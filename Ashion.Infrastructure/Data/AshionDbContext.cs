@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Ashion.Infrastructure.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ashion.Data
 {
-    public class AshionDbContext : IdentityDbContext
+    public class AshionDbContext : IdentityDbContext<User>
     {
         public AshionDbContext(DbContextOptions<AshionDbContext> options)
             : base(options)
