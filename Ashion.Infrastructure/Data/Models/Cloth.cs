@@ -1,10 +1,4 @@
 ﻿using Ashion.Infrastructure.Data.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ashion.Infrastructure.Data.Models
 {
@@ -33,12 +27,16 @@ namespace Ashion.Infrastructure.Data.Models
 
         public Age Age { get; set; }
 
-        public IEnumerable<ClothColor> ClothsColors { get; set; }
-            = new List<ClothColor>();
+        public Color Colors { get; set; }
 
-        public IEnumerable<ClothSize> ClothsSizes { get; set; }
-            = new List<ClothSize>();
+        public Size Size { get; set; }
 
+        public int TypeId { get; set; }
 
+        public Type Type { get; set; }
+
+        //ForeignKeys
+        public IEnumerable<Review> Reviews { get; set; }
+            = new List<Review>();
     }
 }

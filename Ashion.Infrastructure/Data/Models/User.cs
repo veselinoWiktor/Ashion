@@ -14,5 +14,8 @@ namespace Ashion.Infrastructure.Data.Models
         public string LastName { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public IEnumerable<Review> Reviews { get; set; }
+            = new List<Review>();
     }
 }
