@@ -14,8 +14,11 @@ namespace Ashion.Data
         public DbSet<Accessory> Accessories { get; set; }
 
         public DbSet<Cloth> Clothes { get; set; }
+
         public DbSet<Cosmetic> Cosmetics { get; set; }
+
         public DbSet<Ashion.Infrastructure.Data.Models.Type> Types { get; set; }
+
         public DbSet<Review> Reviews { get; set; }
 
 

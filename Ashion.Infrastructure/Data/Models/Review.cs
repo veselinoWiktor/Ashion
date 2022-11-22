@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using static Ashion.Infrastructure.Data.DataConstants.Review;
+
 
 namespace Ashion.Infrastructure.Data.Models
 {
     public class Review
     {
+        [Key]
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        [Required]
+        public string UserId { get; set; } = null!;
 
-        public User User { get; set; }
+        [Required]
+        public User User { get; set; } = null!;
 
         public int? ClothId { get; set; }
 
@@ -26,8 +27,11 @@ namespace Ashion.Infrastructure.Data.Models
 
         public Cosmetic? Cosmetic { get; set; }
 
-        public string Description { get; set; }
+        [Required]
+        [MaxLength(MaxDescriptionLength)]
+        public string Description { get; set; } = null!;
 
+        [Required]
         public decimal Rating { get; set; }
     }
 }

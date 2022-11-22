@@ -8,5 +8,7 @@ namespace Ashion.Infrastructure.Data.Models.Enums
 {
     public enum Age
     {
+        Adult = 1,
+        Kid = 2
     }
 }

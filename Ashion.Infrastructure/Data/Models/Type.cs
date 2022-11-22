@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using static Ashion.Infrastructure.Data.DataConstants.Type;
 
 namespace Ashion.Infrastructure.Data.Models
 {
     public class Type
     {
+        [Key]
         public int Id { get; set; }
 
-        public string TypeName { get; set; }
+        [Required]
+        [MaxLength(MaxTypeNameLength)]
+        public string TypeName { get; set; } = null!;
 
         public IEnumerable<Cloth> Cloths { get; set; }
             = new List<Cloth>();
