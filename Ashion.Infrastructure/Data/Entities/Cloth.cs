@@ -54,12 +54,12 @@ namespace Ashion.Infrastructure.Data.Entities
             = new List<Review>();
 
         [Required]
-        public IEnumerable<ClothColor> Colors { get; init; }
-            = new List<ClothColor>();
+        public IEnumerable<Color> Colors { get; init; }
+            = new List<Color>();
 
         [Required]
-        public IEnumerable<ClothSize> Sizes { get; init; }
-            = new List<ClothSize>();
+        public IEnumerable<Size> Sizes { get; init; }
+            = new List<Size>();
 
         [Required]
         public Gender Gender { get; set; }

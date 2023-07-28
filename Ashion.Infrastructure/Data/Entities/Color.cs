@@ -12,7 +12,7 @@ namespace Ashion.Infrastructure.Data.Entities
         [MaxLength(MaxNameLength)]
         public string Name { get; set; } = null!;
 
-        public IEnumerable<ClothColor> Cloths { get; set; }
-            = new List<ClothColor>();
+        public IEnumerable<Cloth> Cloths { get; set; }
+            = new List<Cloth>();
     }
 }
