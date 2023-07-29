@@ -48,7 +48,7 @@ namespace Ashion.Infrastructure.Data
             public const int MaxNameLength = 30;
             public const int MinNameLength = 3;
 
-            public const int MaxBrandLength = 15;
+            public const int MaxBrandLength = 25;
             public const int MinBrandLength = 2;
 
             public const double MaxPriceRange = 1500.00;

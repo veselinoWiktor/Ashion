@@ -55,6 +55,18 @@ namespace Ashion.Infrastructure.Data.Configurations
                     CategoryId = 1,
                     ForKids = false,
                     Gender = Gender.Male,
+                },
+                new Cloth()
+                {
+                    Id = 2,
+                    Name = "Тениска",
+                    Brand = "Polo Ralph Lauren",
+                    Price = 232.90m,
+                    Description = "This T-Shirt is the best that Polo have ever created. Perfect for outdoor activities",
+                    Quantity = 7,
+                    CategoryId = 1,
+                    ForKids = false,
+                    Gender = Gender.Male
                 }
             };
         }

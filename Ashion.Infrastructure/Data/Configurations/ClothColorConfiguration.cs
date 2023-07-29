@@ -59,6 +59,16 @@ namespace Ashion.Infrastructure.Data.Configurations
                 {
                     ClothId = 1,
                     ColorId = 3,
+                },
+                new ClothColor
+                {
+                    ClothId = 2,
+                    ColorId = 11,
+                },
+                new ClothColor
+                {
+                    ClothId = 2,
+                    ColorId = 5,
                 }
             };
         }

@@ -40,6 +40,7 @@ namespace Ashion.Infrastructure.Data.Configurations
         {
             return new List<ClothSize>()
             {
+                //First T-Shirt
                 new ClothSize()
                 {
                     ClothId = 1,
@@ -59,6 +60,32 @@ namespace Ashion.Infrastructure.Data.Configurations
                 {
                     ClothId = 1,
                     SizeId = 5
+                },
+                //Second T-Shirt
+                new ClothSize()
+                {
+                    ClothId = 2,
+                    SizeId = 2
+                },
+                new ClothSize()
+                {
+                    ClothId = 2,
+                    SizeId = 3
+                },
+                new ClothSize()
+                {
+                    ClothId = 2,
+                    SizeId = 4
+                },
+                new ClothSize()
+                {
+                    ClothId = 2,
+                    SizeId = 5
+                },
+                new ClothSize()
+                {
+                    ClothId = 2,
+                    SizeId = 6
                 }
             };
         }
