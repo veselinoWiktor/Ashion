@@ -4,6 +4,7 @@ using Ashion.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ashion.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AshionDbContext))]
-    partial class AshionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230729130344_FixMappingTablesAndCategoriesNameMaxLength")]
+    partial class FixMappingTablesAndCategoriesNameMaxLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,80 +90,6 @@ namespace Ashion.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "T-Shirts",
-                            ProductType = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Jeans",
-                            ProductType = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Pants",
-                            ProductType = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Sweatshirts",
-                            ProductType = 0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Jackets",
-                            ProductType = 0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Shirts",
-                            ProductType = 0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Bags and Backpacks",
-                            ProductType = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Sunglasses",
-                            ProductType = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Jewelries",
-                            ProductType = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Antiage cosmetic",
-                            ProductType = 2
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Face cosmetic",
-                            ProductType = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "SPF",
-                            ProductType = 2
-                        });
                 });
 
             modelBuilder.Entity("Ashion.Infrastructure.Data.Entities.Cloth", b =>
@@ -215,21 +143,6 @@ namespace Ashion.Infrastructure.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Clothes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Brand = "Nike",
-                            CategoryId = 1,
-                            Description = "Този продукт е направен от рециклирани материали, които са създадени чрез повторна употреба на материали преди или след тяхната употреба. Използването на рециклирани материали в продуктите намалява количеството на суровините и свързаните с тях отпадъци, енергия и вода при производството на първични материали.",
-                            ForKids = false,
-                            Gender = 0,
-                            IsActive = true,
-                            Name = "Tениска",
-                            Price = 58.90m,
-                            Quantity = 10
-                        });
                 });
 
             modelBuilder.Entity("Ashion.Infrastructure.Data.Entities.ClothColor", b =>
@@ -245,28 +158,6 @@ namespace Ashion.Infrastructure.Data.Migrations
                     b.HasIndex("ColorId");
 
                     b.ToTable("ClothesColors");
-
-                    b.HasData(
-                        new
-                        {
-                            ClothId = 1,
-                            ColorId = 2
-                        },
-                        new
-                        {
-                            ClothId = 1,
-                            ColorId = 11
-                        },
-                        new
-                        {
-                            ClothId = 1,
-                            ColorId = 5
-                        },
-                        new
-                        {
-                            ClothId = 1,
-                            ColorId = 3
-                        });
                 });
 
             modelBuilder.Entity("Ashion.Infrastructure.Data.Entities.ClothSize", b =>
@@ -282,28 +173,6 @@ namespace Ashion.Infrastructure.Data.Migrations
                     b.HasIndex("SizeId");
 
                     b.ToTable("ClothesSizes");
-
-                    b.HasData(
-                        new
-                        {
-                            ClothId = 1,
-                            SizeId = 2
-                        },
-                        new
-                        {
-                            ClothId = 1,
-                            SizeId = 3
-                        },
-                        new
-                        {
-                            ClothId = 1,
-                            SizeId = 4
-                        },
-                        new
-                        {
-                            ClothId = 1,
-                            SizeId = 5
-                        });
                 });
 
             modelBuilder.Entity("Ashion.Infrastructure.Data.Entities.Color", b =>
@@ -322,68 +191,6 @@ namespace Ashion.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Beige"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Black"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Blue"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Brown"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Gray"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Green"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Orange"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Pink"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Purple"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Red"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "White"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Yellow"
-                        });
                 });
 
             modelBuilder.Entity("Ashion.Infrastructure.Data.Entities.Cosmetic", b =>
@@ -479,43 +286,6 @@ namespace Ashion.Infrastructure.Data.Migrations
                     b.HasIndex("CosmeticId");
 
                     b.ToTable("Images");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ClothColorId = 2,
-                            ClothId = 1,
-                            Url = "https://cdn.aboutstatic.com/file/images/41fb7fb9af1199c00623a77930483763.png?bg=F4F4F5&quality=75&trim=1&height=800&width=600"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ClothColorId = 2,
-                            ClothId = 1,
-                            Url = "https://cdn.aboutstatic.com/file/images/079377b386685bf1b889e751cad816ee.jpg?quality=75&height=800&width=600"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ClothColorId = 2,
-                            ClothId = 1,
-                            Url = "https://cdn.aboutstatic.com/file/images/3f9d53b537dbd3fb3228daaf51b77bf8.jpg?quality=75&height=800&width=600"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ClothColorId = 2,
-                            ClothId = 1,
-                            Url = "https://cdn.aboutstatic.com/file/images/b1826275260cae21fb4f6a9090011bdb.jpg?quality=75&height=1280&width=960"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ClothColorId = 2,
-                            ClothId = 1,
-                            Url = "https://cdn.aboutstatic.com/file/images/b30e9352ac137cb6270de8684c21a24d.jpg?quality=75&height=1280&width=960"
-                        });
                 });
 
             modelBuilder.Entity("Ashion.Infrastructure.Data.Entities.Review", b =>
@@ -578,38 +348,6 @@ namespace Ashion.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sizes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            SizeNumber = "XS"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            SizeNumber = "S"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            SizeNumber = "M"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            SizeNumber = "L"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            SizeNumber = "XL"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            SizeNumber = "XXL"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

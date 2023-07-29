@@ -16,7 +16,7 @@ namespace Ashion.Infrastructure.Data
 
         public static class Cateogry
         {
-            public const int MaxNameLength = 15;
+            public const int MaxNameLength = 20;
             public const int MinNameLength = 1;
         }
 

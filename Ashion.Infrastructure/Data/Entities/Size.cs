@@ -13,7 +13,7 @@ namespace Ashion.Infrastructure.Data.Entities
         [MaxLength(MaxSizeNumberLength)]
         public string SizeNumber { get; set; } = null!;
 
-        public IEnumerable<Cloth> Cloths { get; set; }
-            = new List<Cloth>();
+        public IEnumerable<ClothSize> Cloths { get; set; }
+            = new List<ClothSize>();
     }
 }

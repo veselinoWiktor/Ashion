@@ -3,12 +3,13 @@ using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace Ashion.Infrastructure.Data
 {
     public class AshionDbContext : IdentityDbContext
     {
-        private bool seedDb;
+        private readonly bool seedDb;
 
         public AshionDbContext(DbContextOptions<AshionDbContext> options, bool seedDb = true)
             : base(options)
@@ -38,76 +39,20 @@ namespace Ashion.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new AccessoryConfiguration(seedDb));
+            if (seedDb)
+            {
+                builder.ApplyConfiguration(new CategoryConfiguration());
+                builder.ApplyConfiguration(new ColorConfiguration());
+                builder.ApplyConfiguration(new SizeConfiguration());
+            }
 
-            builder
-                .Entity<Cloth>()
-                .HasOne(p => p.Category)
-                .WithMany()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Entity<Cloth>()
-                .HasMany(p => p.Images)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Entity<Cloth>()
-                .HasMany(p => p.Reviews)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Entity<Cosmetic>()
-                .HasOne(p => p.Category)
-                .WithMany()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Entity<Cosmetic>()
-                .HasMany(p => p.Images)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Entity<Cosmetic>()
-                .HasMany(p => p.Reviews)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-                .Entity<Review>()
-                .HasOne(r => r.FromUser)
-                .WithMany()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<ClothColor>()
-                .HasKey(cc => new { cc.ClothId, cc.ColorId });
-
-            builder.Entity<ClothColor>()
-                .HasOne(cc => cc.Cloth)
-                .WithMany(cl => cl.Colors)
-                .OnDelete(DeleteBehavior.Restrict);
-
-
-            builder.Entity<ClothColor>()
-                .HasOne(cc => cc.Color)
-                .WithMany(co => co.Cloths)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<ClothSize>()
-                .HasKey(cs => new { cs.ClothId, cs.SizeId });
-
-            builder.Entity<ClothSize>()
-               .HasOne(cs => cs.Cloth)
-               .WithMany(co => co.Sizes)
-               .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<ClothSize>()
-                .HasOne(cs => cs.Size)
-                .WithMany(co => co.Cloths)
-                .OnDelete(DeleteBehavior.Restrict);
+            ////builder.ApplyConfiguration(new AccessoryConfiguration(seedDb));
+            builder.ApplyConfiguration(new ImageConfiguration(seedDb));
+            builder.ApplyConfiguration(new ClothConfiguration(seedDb));
+            builder.ApplyConfiguration(new ClothSizeConfiguration(seedDb));
+            builder.ApplyConfiguration(new ClothColorConfiguration(seedDb));
+            ////builder.ApplyConfiguration(new CosmeticConfiguration(seedDb));
+            ////builder.ApplyConfiguration(new ReviewConfiguration(seedDb));
 
             base.OnModelCreating(builder);
         }
