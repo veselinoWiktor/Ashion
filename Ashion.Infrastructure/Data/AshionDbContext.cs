@@ -1,9 +1,7 @@
 ﻿using Ashion.Infrastructure.Data.Configurations;
 using Ashion.Infrastructure.Data.Entities;
-using Ashion.Infrastructure.Data.Enums;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing;
 
 namespace Ashion.Infrastructure.Data
 {
