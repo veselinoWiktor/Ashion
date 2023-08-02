@@ -175,6 +175,76 @@ namespace Ashion.Infrastructure.Data.Configurations
                     Url = "https://cdn.aboutstatic.com/file/images/79a4134d533ad4cd5d20ce17fa26302f.jpg?quality=75&height=1280&width=960",
                     ClothColorId = 3,
                     ClothId = 1
+                },
+                new
+                {
+                    Id = 21,
+                    Url = "https://cdn.aboutstatic.com/file/images/fc28d2511314ccc371d5bd10a4270cab.png?bg=F4F4F5&quality=75&trim=1&height=1280&width=960",
+                    ClothColorId = 11,
+                    ClothId = 2
+                },
+                new
+                {
+                    Id = 22,
+                    Url = "https://cdn.aboutstatic.com/file/images/3c7e26fd6afdf68dd464f0a18827066e.jpg?quality=75&height=1280&width=960",
+                    ClothColorId = 11,
+                    ClothId = 2
+                },
+                new
+                {
+                    Id = 23,
+                    Url = "https://cdn.aboutstatic.com/file/images/dafb99dc5c08a4ebda9bf42670132cd8.jpg?quality=75&height=1280&width=960",
+                    ClothColorId = 11,
+                    ClothId = 2
+                },
+                new
+                {
+                    Id = 24,
+                    Url = "https://cdn.aboutstatic.com/file/images/df5a0005dcf03e327fccb00464883441.jpg?quality=75&height=1280&width=960",
+                    ClothColorId = 11,
+                    ClothId = 2
+                },
+                new
+                {
+                    Id = 25,
+                    Url = "https://cdn.aboutstatic.com/file/images/3c8af8455a8ade177b7b0585d40b3aec.jpg?quality=75&height=1280&width=960",
+                    ClothColorId = 11,
+                    ClothId = 2
+                },
+                new
+                {
+                    Id = 26,
+                    Url = "https://cdn.aboutstatic.com/file/images/b10b0dcfd7fbf7cfde9b9770cd77d9f0.png?bg=F4F4F5&quality=75&trim=1&height=1280&width=960",
+                    ClothColorId = 5,
+                    ClothId = 2
+                },
+                new
+                {
+                    Id = 27,
+                    Url = "https://cdn.aboutstatic.com/file/images/35b936c2f46329051376d907d4661d75.jpg?quality=75&height=1280&width=960",
+                    ClothColorId = 5,
+                    ClothId = 2
+                },
+                new
+                {
+                    Id = 28,
+                    Url = "https://cdn.aboutstatic.com/file/images/c4fe795025d3b6c27047562e6b07055f.jpg?quality=75&height=1280&width=960",
+                    ClothColorId = 5,
+                    ClothId = 2
+                },
+                new
+                {
+                    Id = 29,
+                    Url = "https://cdn.aboutstatic.com/file/images/2a284b7a30e2a7d75b0bdbed888efa64.jpg?quality=75&height=1280&width=960",
+                    ClothColorId = 5,
+                    ClothId = 2
+                },
+                new
+                {
+                    Id = 30,
+                    Url = "https://cdn.aboutstatic.com/file/images/3161bda02ece8a966cdef0efdcaf9b0d.jpg?quality=75&height=1280&width=960",
+                    ClothColorId = 5,
+                    ClothId = 2
                 }
             };
         }

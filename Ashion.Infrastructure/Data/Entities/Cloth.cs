@@ -1,6 +1,7 @@
 ﻿using Ashion.Infrastructure.Data.Enums;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using static Ashion.Infrastructure.Data.DataConstants.Product;
 
 namespace Ashion.Infrastructure.Data.Entities
@@ -46,6 +47,8 @@ namespace Ashion.Infrastructure.Data.Entities
 
         [Required]
         public Category Category { get; set; } = null!;
+
+        public KnownColor Color { get; set; }
 
         public IEnumerable<Image> Images { get; set; }
             = new List<Image>();

@@ -12,7 +12,6 @@ namespace Ashion.Infrastructure.Data.Configurations
     public class CosmeticConfiguration : IEntityTypeConfiguration<Cosmetic>
     {
         private readonly bool seedDb;
-        public static Color redColor, greenColor, blueColor;
 
         public CosmeticConfiguration(bool seedDb = true)
         {
