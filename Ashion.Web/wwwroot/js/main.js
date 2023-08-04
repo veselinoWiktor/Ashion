@@ -174,8 +174,9 @@ Created: Colorib
 		Range Slider
 	--------------------- */
 	var rangeSlider = $(".price-range"),
-    minamount = $("#minamount"),
-    maxamount = $("#maxamount"),
+    //minamount = $("#minamount"),
+    //maxamount = $("#maxamount"),
+    amount = $('#amount'),
     minPrice = rangeSlider.data('min'),
     maxPrice = rangeSlider.data('max');
     rangeSlider.slider({
@@ -184,12 +185,30 @@ Created: Colorib
     max: maxPrice,
     values: [minPrice, maxPrice],
     slide: function (event, ui) {
-        minamount.val('$' + ui.values[0]);
-        maxamount.val('$' + ui.values[1]);
+        amount.val('$' + ui.values[0] + ' - $' + ui.values[1])
+        //minamount.val('$' + ui.values[0]);
+        //maxamount.val('$' + ui.values[1]);
         }
     });
-    minamount.val('$' + rangeSlider.slider("values", 0));
-    maxamount.val('$' + rangeSlider.slider("values", 1));
+    amount.val("$" + rangeSlider.slider("values", 0) +
+        " - $" + rangeSlider.slider("values", 1));
+    //minamount.val('$' + rangeSlider.slider("values", 0));
+    //maxamount.val('$' + rangeSlider.slider("values", 1));
+
+    var filterSubmit = $('#form_submit');
+    filterSubmit.on('click', function () {
+        let href = filterSubmit.attr("href");
+        href = href.replace(/MinPriceRange=[0-9]+/g, 'MinPriceRange=' + rangeSlider.slider("values", 0));
+        href = href.replace(/MaxPriceRange=[0-9]+/g, 'MaxPriceRange=' + rangeSlider.slider("values", 1));
+        $('#size_list input[type=checkbox]:checked').each(function () {
+            href += '&Size=' + $.trim($(this).parent().text());
+        });
+        $('#color_list input[type=checkbox]:checked').each(function () {
+            href += '&Color=' + $.trim($(this).parent().text());
+        });
+        filterSubmit.attr("href", href);
+        $('#sidebar_form').submit();
+    })
 
     /*------------------
 		Single Product
@@ -231,5 +250,7 @@ Created: Colorib
         $(".size__btn label").removeClass('active');
         $(this).addClass('active');
     });
+
+
 
 })(jQuery);

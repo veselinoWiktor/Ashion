@@ -47,12 +47,11 @@
             </li>
         </ul>
         <div class="offcanvas__logo">
-            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+            <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
-            <a href="#">Login</a>
-            <a href="#">Register</a>
+            <partial name="_LoginPartial" />
         </div>
     </div>
     <!-- Offcanvas Menu End -->
@@ -70,9 +69,9 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li><a href="#">Women’s</a></li> <!-- TODO -->
-                            <li><a href="#">Men’s</a></li> <!-- TODO -->
-                            <li><a href="./shop.html">Shop</a></li>  <!-- TODO -->
+                            <li><a asp-area="" asp-controller="Shop" asp-action="Womens">Women’s</a></li> 
+                            <li><a asp-area="" asp-controller="Shop" asp-action="Mens">Men’s</a></li> 
+                            <li><a asp-area="" asp-controller="Shop" asp-action="AllProducts">Shop</a></li>  
                             <li>
                                 <a href="#">Pages</a>
                                 <ul class="dropdown">
@@ -118,64 +117,7 @@
     <!-- Header Section End -->
 
     @RenderBody()
-    
 
-    <!-- Instagram Begin -->
-    <div class="instagram">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="/img/instagram/insta-1.jpg">
-                        <div class="instagram__text">
-                            <i class="fa fa-instagram"></i>
-                            <a href="#">@@ ashion_shop</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="/img/instagram/insta-2.jpg">
-                        <div class="instagram__text">
-                            <i class="fa fa-instagram"></i>
-                            <a href="#">@@ ashion_shop</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="/img/instagram/insta-3.jpg">
-                        <div class="instagram__text">
-                            <i class="fa fa-instagram"></i>
-                            <a href="#">@@ ashion_shop</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="/img/instagram/insta-4.jpg">
-                        <div class="instagram__text">
-                            <i class="fa fa-instagram"></i>
-                            <a href="#">@@ ashion_shop</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="/img/instagram/insta-5.jpg">
-                        <div class="instagram__text">
-                            <i class="fa fa-instagram"></i>
-                            <a href="#">@@ ashion_shop</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                    <div class="instagram__item set-bg" data-setbg="/img/instagram/insta-6.jpg">
-                        <div class="instagram__text">
-                            <i class="fa fa-instagram"></i>
-                            <a href="#">@@ ashion_shop</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <footer class="footer">
         <div class="container">
             <div class="row">

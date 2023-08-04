@@ -1314,6 +1314,11 @@ ol {
 	padding-bottom: 80px;
 }
 
+.sidebar__border {
+	padding-top: 15px;
+	border: 3px solid #ca1515
+}
+
 .sidebar__categories {
 	margin-bottom: 50px;
 }
@@ -1451,20 +1456,10 @@ ol {
 	margin-bottom: 0;
 }
 
-.filter-range-wrap .range-slider .price-input:after {
-	position: absolute;
-	left: 81px;
-	top: 12px;
-	height: 1px;
-	width: 5px;
-	background: #0d0d0d;
-	content: "";
-}
-
 .filter-range-wrap .range-slider .price-input input {
 	font-size: 16px;
 	color: #0d0d0d;
-	max-width: 16%;
+	max-width: 40%;
 	border: none;
 }
 
@@ -1601,6 +1596,13 @@ ol {
 	background: #0d0d0d;
 	border-color: #0d0d0d;
 	color: #ffffff;
+}
+
+.pagination__option a.disable-link {
+	pointer-events: none;
+	background: #0d0d0d;
+	border-color: #0d0d0d;
+	color: white;
 }
 
 /*---------------------

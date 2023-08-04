@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Ashion.Core.Contracts;
+using Ashion.Core.Models.Shop;
+using Ashion.Infrastructure.Data.Entities;
+using Ashion.Web.Models.Shop;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashion.Web.Controllers
@@ -6,32 +10,71 @@ namespace Ashion.Web.Controllers
     [Authorize]
     public class ShopController : Controller
     {
-        public IActionResult All()
+        private readonly IShopService shop;
+
+        public ShopController(IShopService shop)
         {
-            return View();
+            this.shop = shop;
         }
 
-        public IActionResult Womens()
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> AllProducts()
         {
-            return View();
+            var allProducts = await shop.GetAllProducts();
+
+            return View(allProducts);
         }
 
-        public IActionResult Mens()
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Womens()
         {
-            return View();
-        }
-        public IActionResult Kids()
-        {
-            return View();
+            var allWomensClothes = await shop.GetAllWomensClothes();
+
+            return View(allWomensClothes);
         }
 
-        public IActionResult Accessories()
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Mens([FromQuery] ShopQueryModel query)
         {
-            return View();
+            ;
+            var queryResult = await shop.GetAllMensClothes(query.Category, query.Size, query.Color, query.MinPriceRange, query.MaxPriceRange, query.CurrentPage, ShopQueryModel.ProductsPerPage);
+
+            query.Products = queryResult;
+            query.TotalProductsCount = queryResult.Count();
+
+            query.Colors = await shop.GetAllColors();
+            query.Sizes = await shop.GetAllSizes();
+
+            return View(query);
         }
-        public IActionResult Cosmetics()
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Kids()
         {
-            return View();
+            var allKidsClothes = await shop.GetAllKidsClothes();
+
+            return View(allKidsClothes);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Accessories()
+        {
+            var allAccessories = await shop.GetAllAccesories();
+
+            return View(allAccessories);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Cosmetics()
+        {
+            var allCosmetics = await shop.GetAllCosmetics();
+            return View(allCosmetics);
         }
     }
 }
