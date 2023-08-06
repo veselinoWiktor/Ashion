@@ -38,6 +38,11 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
+.center-element{
+	justify-content: center;
+	display: flex
+}
+
 h1,
 h2,
 h3,

@@ -67,12 +67,14 @@
                 </div>
                 <div class="col-xl-6 col-lg-7">
                     <nav class="header__menu">
-                        <ul>
-                            <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li><a asp-area="" asp-controller="Shop" asp-action="Womens">Women’s</a></li> 
-                            <li><a asp-area="" asp-controller="Shop" asp-action="Mens">Men’s</a></li> 
-                            <li><a asp-area="" asp-controller="Shop" asp-action="AllProducts">Shop</a></li>  
-                            <li>
+                        <ul class="center-element">
+                            <li class="@(ViewData["Title"] == "Home" ? "active" : string.Empty)"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="@(ViewData["Title"] == "Women's Clothes" ? "active" : string.Empty)"><a asp-area="" asp-controller="Shop" asp-action="Womens">Women’s</a></li>
+                            <li class="@(ViewData["Title"] == "Men's Clothes" ? "active" : string.Empty)"><a asp-area="" asp-controller="Shop" asp-action="Mens">Men’s</a></li>
+                            <li class="@(ViewData["Title"] == "Kid's Clothes" ? "active" : string.Empty)"><a asp-area="" asp-controller="Shop" asp-action="Kids">Kid’s</a></li>
+                            <li class="@(ViewData["Title"] == "Accessories" ? "active" : string.Empty)"><a asp-area="" asp-controller="Shop" asp-action="Accessories">Accessories</a></li>
+                            <li class="@(ViewData["Title"] == "Cosmetics" ? "active" : string.Empty)"><a asp-area="" asp-controller="Shop" asp-action="Cosmetics">Cosmetics</a></li>
+                            @*<li>
                                 <a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="./product-details.html">Product Details</a></li>
@@ -80,9 +82,9 @@
                                     <li><a href="./checkout.html">Checkout</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
-                            </li>  <!-- TODO -->
-                            <li><a href="./blog.html">Blog</a></li>   <!-- TODO -->
-                            <li><a href="./contact.html">Contact</a></li>  <!-- TODO -->
+                            </li> *@ <!-- TODO -->
+                            @*<li><a href="./blog.html">Blog</a></li>   <!-- TODO -->*@
+                            @*<li><a href="./contact.html">Contact</a></li>  <!-- TODO -->*@
                         </ul>
                     </nav>
                 </div>

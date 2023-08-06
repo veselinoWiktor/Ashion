@@ -200,16 +200,51 @@ Created: Colorib
         let href = filterSubmit.attr("href");
         href = href.replace(/MinPriceRange=[0-9]+/g, 'MinPriceRange=' + rangeSlider.slider("values", 0));
         href = href.replace(/MaxPriceRange=[0-9]+/g, 'MaxPriceRange=' + rangeSlider.slider("values", 1));
-        $('#size_list input[type=checkbox]:checked').each(function () {
-            href += '&Size=' + $.trim($(this).parent().text());
-        });
-        $('#color_list input[type=checkbox]:checked').each(function () {
-            href += '&Color=' + $.trim($(this).parent().text());
-        });
+        let sizes = $('#size_list input[type=checkbox]:checked')
+        if (sizes.length != 0) {
+            href += '&Sizes='
+            sizes.each(function (index) {
+                if (index == 0) {
+                    href += $.trim($(this).parent().text());
+                } else {
+                    href += ',' + $.trim($(this).parent().text());
+                }
+            });
+        }
+        let colors = $('#color_list input[type=checkbox]:checked');
+        if (colors.length != 0) {
+            href += '&Colors='
+            colors.each(function (index) {
+                if (index == 0) {
+                    href += $.trim($(this).parent().text());
+                } else {
+                    href += ',' + $.trim($(this).parent().text());
+                }
+            });
+        }
         filterSubmit.attr("href", href);
         $('#sidebar_form').submit();
     })
 
+    //$('.pagination__option a:not(.disable-link)').each(function () {
+    //    let hrefd = window.location.href;
+    //    GetParameterValues("Size").each(function (s) {
+    //        hrefd += '&Size=' + $(this).text();
+    //    })
+    //    GetParameterValues("Color").each(function (s) {
+    //        hrefd += '&Color=' + $(this).text();
+    //    })
+    //})
+
+    function GetParameterValues(param) {
+        var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < url.length; i++) {
+            var urlparam = url[i].split('=');
+            if (urlparam[0] == param) {
+                return urlparam[1];
+            }
+        }
+    }
     /*------------------
 		Single Product
 	--------------------*/

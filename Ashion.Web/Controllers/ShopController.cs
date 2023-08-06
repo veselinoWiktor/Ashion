@@ -4,6 +4,7 @@ using Ashion.Infrastructure.Data.Entities;
 using Ashion.Web.Models.Shop;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Ashion.Web.Controllers
 {
@@ -19,62 +20,77 @@ namespace Ashion.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> AllProducts()
+        public async Task<IActionResult> Womens([FromQuery]ShopQueryModel query)
         {
-            var allProducts = await shop.GetAllProducts();
+            var sizes = query.Sizes?.Split(',').ToArray();
+            var colors = query.Colors?.Split(',').ToArray();
+            var queryResult = await shop.GetAllWomensClothes(query.Category, sizes, colors, query.MinPriceRange, query.MaxPriceRange, query.CurrentPage, ShopQueryModel.ProductsPerPage);
 
-            return View(allProducts);
-        }
+            query.Products = queryResult.Products;
+            query.TotalProductsCount = queryResult.TotalProductsCount;
 
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> Womens()
-        {
-            var allWomensClothes = await shop.GetAllWomensClothes();
-
-            return View(allWomensClothes);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> Mens([FromQuery] ShopQueryModel query)
-        {
-            ;
-            var queryResult = await shop.GetAllMensClothes(query.Category, query.Size, query.Color, query.MinPriceRange, query.MaxPriceRange, query.CurrentPage, ShopQueryModel.ProductsPerPage);
-
-            query.Products = queryResult;
-            query.TotalProductsCount = queryResult.Count();
-
-            query.Colors = await shop.GetAllColors();
-            query.Sizes = await shop.GetAllSizes();
+            query.AllColors = await shop.GetAllColors();
+            query.AllSizes = await shop.GetAllSizes();
 
             return View(query);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Kids()
+        public async Task<IActionResult> Mens([FromQuery]ShopQueryModel query)
         {
-            var allKidsClothes = await shop.GetAllKidsClothes();
+            var sizes = query.Sizes?.Split(',').ToArray();
+            var colors = query.Colors?.Split(',').ToArray();
+            var queryResult = await shop.GetAllMensClothes(query.Category, sizes, colors, query.MinPriceRange, query.MaxPriceRange, query.CurrentPage, ShopQueryModel.ProductsPerPage);
 
-            return View(allKidsClothes);
+            query.Products = queryResult.Products;
+            query.TotalProductsCount = queryResult.TotalProductsCount;
+
+            query.AllColors = await shop.GetAllColors();
+            query.AllSizes = await shop.GetAllSizes();
+
+            return View(query);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Accessories()
+        public async Task<IActionResult> Kids([FromQuery]ShopQueryModel query)
         {
-            var allAccessories = await shop.GetAllAccesories();
+            var sizes = query.Sizes?.Split(',').ToArray();
+            var colors = query.Colors?.Split(',').ToArray();
+            var queryResult = await shop.GetAllKidsClothes(query.Category, sizes, colors, query.MinPriceRange, query.MaxPriceRange, query.CurrentPage, ShopQueryModel.ProductsPerPage);
 
-            return View(allAccessories);
+            query.Products = queryResult.Products;
+            query.TotalProductsCount = queryResult.TotalProductsCount;
+
+            query.AllColors = await shop.GetAllColors();
+            query.AllSizes = await shop.GetAllSizes();
+
+            return View(query);
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Cosmetics()
+        public async Task<IActionResult> Accessories([FromQuery]ShopQueryModel query)
         {
-            var allCosmetics = await shop.GetAllCosmetics();
-            return View(allCosmetics);
+            var queryResult = await shop.GetAllAccesories(query.Category, query.MinPriceRange, query.MaxPriceRange, query.CurrentPage, ShopQueryModel.ProductsPerPage);
+
+            query.Products = queryResult.Products;
+            query.TotalProductsCount = queryResult.TotalProductsCount;
+
+            return View(query);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Cosmetics([FromQuery]ShopQueryModel query)
+        {
+            var queryResult = await shop.GetAllCosmetics(query.Category, query.MinPriceRange, query.MaxPriceRange, query.CurrentPage, ShopQueryModel.ProductsPerPage);
+
+            query.Products = queryResult.Products;
+            query.TotalProductsCount = queryResult.TotalProductsCount;
+
+            return View(query);
         }
     }
 }

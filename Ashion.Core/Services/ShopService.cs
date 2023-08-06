@@ -5,6 +5,7 @@ using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
 using Ashion.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace Ashion.Core.Services
 {
@@ -18,44 +19,125 @@ namespace Ashion.Core.Services
             this.repository = repository;
         }
 
-        public async Task<IEnumerable<ShopProductServiceModel>> GetAllAccesories()
+        public async Task<ShopQueryServiceModel> GetAllAccesories(
+            string? category = null,
+            int minPrice = 0,
+            int maxPrice = 500,
+            int currentPage = 1,
+            int productsPerPage = 9)
         {
-            return await this.repository.AllReadonly<Accessory>()
+            var accessoriesQuery = this.repository.AllReadonly<Accessory>()
+                .Where(a => a.Price > minPrice
+                && a.Price < maxPrice)
+                .AsQueryable();
+
+            if (!String.IsNullOrWhiteSpace(category))
+            {
+                accessoriesQuery = accessoriesQuery.Where(a => a.Category.Name.ToLower() == category.ToLower());
+            }
+
+            var accessories = await accessoriesQuery
+                .Skip((currentPage - 1) * productsPerPage)
+                .Take(productsPerPage)
                 .Select(c => new ShopProductServiceModel()
                 {
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
                     ImageUrl = c.Images.First().Url,
-                    Price = c.Price
-                }).ToListAsync();
-        }
-
-        public async Task<IEnumerable<string>> GetAllColors()
-        {
-            return await this.repository.AllReadonly<Color>()
-                .OrderBy(c => c.Id)
-                .Select(c => c.Name)
+                    Price = c.Price,
+                })
                 .ToListAsync();
+
+            var totalProductsCount = await accessoriesQuery.CountAsync();
+
+            return new ShopQueryServiceModel()
+            {
+                Products = accessories,
+                TotalProductsCount = totalProductsCount
+            };
         }
 
-        public async Task<IEnumerable<ShopProductServiceModel>> GetAllCosmetics()
+        
+
+        public async Task<ShopQueryServiceModel> GetAllCosmetics(
+            string? category = null,
+            int minPrice = 0,
+            int maxPrice = 500,
+            int currentPage = 1,
+            int productsPerPage = 9)
         {
-            return await this.repository.AllReadonly<Cosmetic>()
+            var cosmeticsQuery = this.repository.AllReadonly<Cosmetic>()
+                .Where(c => c.Price > minPrice
+                && c.Price < maxPrice)
+                .AsQueryable();
+
+            if (!String.IsNullOrWhiteSpace(category))
+            {
+                cosmeticsQuery = cosmeticsQuery.Where(c => c.Category.Name.ToLower() == category.ToLower());
+            }
+
+            var cosmetics = await cosmeticsQuery
+                .Skip((currentPage - 1) * productsPerPage)
+                .Take(productsPerPage)
                 .Select(c => new ShopProductServiceModel()
                 {
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
                     ImageUrl = c.Images.First().Url,
-                    Price = c.Price
-                }).ToListAsync();
+                    Price = c.Price,
+                })
+                .ToListAsync();
+
+            var totalProductsCount = await cosmeticsQuery.CountAsync();
+
+            return new ShopQueryServiceModel()
+            {
+                Products = cosmetics,
+                TotalProductsCount = totalProductsCount
+            };
         }
 
-        public async Task<IEnumerable<ShopProductServiceModel>> GetAllKidsClothes()
+        public async Task<ShopQueryServiceModel> GetAllKidsClothes(
+            string? category = null,
+            string[]? sizes = null,
+            string[]? colors = null,
+            int minPrice = 0,
+            int maxPrice = 500,
+            int currentPage = 1,
+            int productsPerPage = 9)
         {
-            return await this.repository.AllReadonly<ClothColor>()
-                .Where(cc => cc.Cloth.ForKids == true)
+            var kidsClothesQuery = this.repository.AllReadonly<ClothColor>()
+                .Where(cc => cc.Cloth.ForKids == true
+                && cc.Cloth.Price > minPrice
+                && cc.Cloth.Price < maxPrice)
+                .AsQueryable();
+
+            if (!String.IsNullOrWhiteSpace(category))
+            {
+                kidsClothesQuery = kidsClothesQuery.Where(cc => cc.Cloth.Category.Name.ToLower() == category.ToLower());
+            }
+
+            if (sizes != null)
+            {
+                var validSizes = sizes.Where(s => !String.IsNullOrWhiteSpace(s)).Select(c => c.ToLower()).ToList();
+
+                kidsClothesQuery = kidsClothesQuery
+                    .Where(cc => cc.Cloth.Sizes.Any(cs => validSizes.Contains(cs.Size.SizeNumber.ToLower())));
+            }
+
+            if (colors != null)
+            {
+                var validColors = colors.Where(c => !String.IsNullOrWhiteSpace(c)).Select(c => c.ToLower()).ToList();
+
+                kidsClothesQuery = kidsClothesQuery
+                    .Where(cc => validColors.Contains(cc.Color.Name.ToLower()));
+            }
+
+            var kidsClothes = await kidsClothesQuery
+                .Skip((currentPage - 1) * productsPerPage)
+                .Take(productsPerPage)
                 .Select(cc => new ShopProductServiceModel()
                 {
                     Id = cc.ClothId,
@@ -63,15 +145,24 @@ namespace Ashion.Core.Services
                     Brand = cc.Cloth.Brand,
                     ImageUrl = cc.Cloth.Images.Where(i => i.ClothColorId == cc.ColorId).First().Url,
                     Price = cc.Cloth.Price,
-                }).ToListAsync();
+                })
+                .ToListAsync();
+
+            var totalProductsCount = await kidsClothesQuery.CountAsync();
+
+            return new ShopQueryServiceModel()
+            {
+                Products = kidsClothes,
+                TotalProductsCount = totalProductsCount
+            };
         }
 
-        public async Task<IEnumerable<ShopProductServiceModel>> GetAllMensClothes(
+        public async Task<ShopQueryServiceModel> GetAllMensClothes(
             string? category = null,
             string[]? sizes = null,
             string[]? colors = null,
             int minPrice = 0,
-            int maxPrice = 300,
+            int maxPrice = 500,
             int currentPage = 1,
             int productsPerPage = 9)
         {
@@ -116,50 +207,55 @@ namespace Ashion.Core.Services
                 })
                 .ToListAsync();
 
+            var totalProductsCount = await menClothesQuery.CountAsync();
 
-            return mensClothes; 
+            return new ShopQueryServiceModel()
+            {
+                Products = mensClothes,
+                TotalProductsCount = totalProductsCount
+            }; 
         }
 
-        public async Task<IEnumerable<ShopProductServiceModel>> GetAllProducts(
+        public async Task<ShopQueryServiceModel> GetAllWomensClothes(
             string? category = null,
-            string? size = null,
-            string? color = null,
+            string[]? sizes = null,
+            string[]? colors = null,
             int minPrice = 0,
-            int maxPrice = 10000,
+            int maxPrice = 500,
             int currentPage = 1,
-            int productsPerPage = 1)
+            int productsPerPage = 9)
         {
-            var allProducts = new List<ShopProductServiceModel>();
+            var womenClothesQuery = this.repository.AllReadonly<ClothColor>()
+                .Where(cc => cc.Cloth.Gender == Gender.Female
+                && cc.Cloth.ForKids == false
+                && cc.Cloth.Price > minPrice
+                && cc.Cloth.Price < maxPrice)
+                .AsQueryable();
 
-            var allMensClothes = await this.GetAllMensClothes();
-            var allWomensClothes = await this.GetAllWomensClothes();
-            var allKidsClothes = await this.GetAllKidsClothes();
-            var allAccessories = await this.GetAllAccesories();
-            var allCosmetics = await this.GetAllCosmetics();
+            if (!String.IsNullOrWhiteSpace(category))
+            {
+                womenClothesQuery = womenClothesQuery.Where(cc => cc.Cloth.Category.Name.ToLower() == category.ToLower());
+            }
 
-            allProducts.AddRange(allMensClothes);
-            allProducts.AddRange(allWomensClothes);
-            allProducts.AddRange(allKidsClothes);
-            allProducts.AddRange(allAccessories);
-            allProducts.AddRange(allCosmetics);
+            if (sizes != null)
+            {
+                var validSizes = sizes.Where(s => !String.IsNullOrWhiteSpace(s)).Select(c => c.ToLower()).ToList();
 
-            allProducts.Shuffle();
+                womenClothesQuery = womenClothesQuery
+                    .Where(cc => cc.Cloth.Sizes.Any(cs => validSizes.Contains(cs.Size.SizeNumber.ToLower())));
+            }
 
-            return allProducts;
-        }
+            if (colors != null)
+            {
+                var validColors = colors.Where(c => !String.IsNullOrWhiteSpace(c)).Select(c => c.ToLower()).ToList();
 
-        public async Task<IEnumerable<string>> GetAllSizes()
-        {
-            return await this.repository.AllReadonly<Size>()
-                .OrderBy(s => s.Id)
-                .Select(s => s.SizeNumber)
-                .ToListAsync();
-        }
+                womenClothesQuery = womenClothesQuery
+                    .Where(cc => validColors.Contains(cc.Color.Name.ToLower()));
+            }
 
-        public async Task<IEnumerable<ShopProductServiceModel>> GetAllWomensClothes()
-        {
-            return await this.repository.AllReadonly<ClothColor>()
-                .Where(cc => cc.Cloth.Gender == Gender.Female && cc.Cloth.ForKids == false)
+            var womensClothes = await womenClothesQuery
+                .Skip((currentPage - 1) * productsPerPage)
+                .Take(productsPerPage)
                 .Select(cc => new ShopProductServiceModel()
                 {
                     Id = cc.ClothId,
@@ -167,7 +263,16 @@ namespace Ashion.Core.Services
                     Brand = cc.Cloth.Brand,
                     ImageUrl = cc.Cloth.Images.Where(i => i.ClothColorId == cc.ColorId).First().Url,
                     Price = cc.Cloth.Price,
-                }).ToListAsync();
+                })
+                .ToListAsync();
+
+            var totalProductsCount = await womenClothesQuery.CountAsync();
+
+            return new ShopQueryServiceModel()
+            {
+                Products = womensClothes,
+                TotalProductsCount = totalProductsCount
+            };
         }
 
         public async Task<HomeIndexServiceModel> GetCountInformation()
@@ -195,5 +300,20 @@ namespace Ashion.Core.Services
             };
         }
 
+        public async Task<IEnumerable<string>> GetAllSizes()
+        {
+            return await this.repository.AllReadonly<Size>()
+                .OrderBy(s => s.Id)
+                .Select(s => s.SizeNumber)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<string>> GetAllColors()
+        {
+            return await this.repository.AllReadonly<Color>()
+                .OrderBy(c => c.Id)
+                .Select(c => c.Name)
+                .ToListAsync();
+        }
     }
 }

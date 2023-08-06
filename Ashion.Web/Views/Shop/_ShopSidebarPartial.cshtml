@@ -1,6 +1,6 @@
 ﻿@model ShopQueryModel
 
-<div class="col-lg-3 col-md-3 sidebar__border" >
+<div class="col-lg-3 col-md-3 sidebar__border">
     <form method="get" id="sidebar_form">
         <div class="shop__sidebar">
             <div class="sidebar__categories">
@@ -13,7 +13,7 @@
                             <div class="card-heading active">
                                 <a data-toggle="collapse" data-target="#collapseOne">Women</a>
                             </div>
-                            <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                            <div id="collapseOne" class="collapse @(ViewData["Title"] == "Women's Clothes" ? "show" : string.Empty)" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a asp-controller="Shop" asp-action="Womens" asp-route-Category="T-Shirts">T-Shirts</a></li>
@@ -29,7 +29,7 @@
                             <div class="card-heading">
                                 <a data-toggle="collapse" data-target="#collapseTwo">Men</a>
                             </div>
-                            <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
+                            <div id="collapseTwo" class="collapse @(ViewData["Title"] == "Men's Clothes" ? "show" : string.Empty)" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a asp-controller="Shop" asp-action="Mens" asp-route-Category="T-Shirts">T-Shirts</a></li>
@@ -46,7 +46,7 @@
                             <div class="card-heading">
                                 <a data-toggle="collapse" data-target="#collapseThree">Kids</a>
                             </div>
-                            <div id="collapseThree" class="collapse" data-parent="#accordionExample">
+                            <div id="collapseThree" class="collapse @(ViewData["Title"] == "Kid's Clothes" ? "show" : string.Empty)" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a asp-controller="Shop" asp-action="Kids" asp-route-Category="T-Shirts">T-Shirts</a></li>
@@ -62,7 +62,7 @@
                             <div class="card-heading">
                                 <a data-toggle="collapse" data-target="#collapseFour">Accessories</a>
                             </div>
-                            <div id="collapseFour" class="collapse" data-parent="#accordionExample">
+                            <div id="collapseFour" class="collapse @(ViewData["Title"] == "Accessories" ? "show" : string.Empty)" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a href="#">Coats</a></li>
@@ -79,7 +79,7 @@
                             <div class="card-heading">
                                 <a data-toggle="collapse" data-target="#collapseFive">Cosmetic</a>
                             </div>
-                            <div id="collapseFive" class="collapse" data-parent="#accordionExample">
+                            <div id="collapseFive" class="collapse @(ViewData["Title"] == "Cosmetics" ? "show" : string.Empty)" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a href="#">Coats</a></li>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="filter-range-wrap">
                     <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                         data-min="0" data-max="300"></div>
+                         data-min="0" data-max="500"></div>
                     <div class="range-slider">
                         <div class="price-input">
                             <p>Price:</p>
@@ -113,36 +113,42 @@
                 </div>
                 <a asp-route-Category="@Model.Category" asp-route-MinPriceRange="@Model.MinPriceRange" asp-route-MaxPriceRange="@Model.MaxPriceRange" id="form_submit">Filter</a>
             </div>
-            <div class="sidebar__sizes">
-                <div class="section-title">
-                    <h4>Shop by size</h4>
+            @if (Model.AllSizes != null)
+            {
+                <div class="sidebar__sizes">
+                    <div class="section-title">
+                        <h4>Shop by size</h4>
+                    </div>
+                    <div class="size__list" id="size_list">
+                        @foreach (var size in Model.AllSizes)
+                        {
+                            <label for="@size">
+                                @size
+                                <input type="checkbox" id="@size">
+                                <span class="checkmark"></span>
+                            </label>
+                        }
+                    </div>
                 </div>
-                <div class="size__list" id="size_list">
-                    @foreach (var size in Model.Sizes)
-                    {
-                        <label for="@size">
-                            @size
-                            <input type="checkbox" id="@size">
-                            <span class="checkmark"></span>
-                        </label>
-                    }
-                </div>
+            }
+            @if (Model.AllColors != null)
+            {
+                <div class="sidebar__color">
+                    <div class="section-title">
+                        <h4>Shop by color</h4>
+                    </div>
+                    <div class="size__list color__list" id="color_list">
+                        @foreach (var color in Model.AllColors)
+                        {
+                            <label for="@color">
+                                @color
+                                <input type="checkbox" id="@color">
+                                <span class="checkmark"></span>
+                            </label>
+                        }
+                    </div>
             </div>
-            <div class="sidebar__color">
-                <div class="section-title">
-                    <h4>Shop by color</h4>
-                </div>
-                <div class="size__list color__list" id="color_list">
-                    @foreach (var color in Model.Colors)
-                    {
-                        <label for="@color">
-                            @color
-                            <input type="checkbox" id="@color">
-                            <span class="checkmark"></span>
-                        </label>
-                    }
-                </div>
-            </div>
+            }
         </div>
     </form>
 </div>
