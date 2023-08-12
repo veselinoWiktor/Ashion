@@ -1,5 +1,6 @@
 using Ashion.Infrastructure.Data;
 using Ashion.Infrastructure.Data.Entities;
+using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireUppercase = false;
 })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AshionDbContext>();
 builder.Services.AddControllersWithViews(options =>
 {
@@ -29,6 +31,8 @@ builder.Services.AddSession();
 builder.Services.AddApplicationServices();
 
 var app = builder.Build();
+
+app.SeedAdmin();
 
 if (app.Environment.IsDevelopment())
 {

@@ -37,6 +37,7 @@ namespace Ashion.Infrastructure.Data
         {
             if (seedDb)
             {
+                builder.ApplyConfiguration(new UserConfiguration());
                 builder.ApplyConfiguration(new CategoryConfiguration());
                 builder.ApplyConfiguration(new ColorConfiguration());
                 builder.ApplyConfiguration(new SizeConfiguration());
