@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ashion.Infrastructure.Data
 {
-    public class AshionDbContext : IdentityDbContext
+    public class AshionDbContext : IdentityDbContext<User>
     {
         private readonly bool seedDb;
 

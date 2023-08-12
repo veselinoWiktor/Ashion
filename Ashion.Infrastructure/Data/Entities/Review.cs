@@ -27,6 +27,6 @@ namespace Ashion.Infrastructure.Data.Entities
         public string FromUserId { get; set; } = null!;
 
         [Required]
-        public IdentityUser FromUser { get; set; } = null!;
+        public User FromUser { get; set; } = null!;
     }
 }

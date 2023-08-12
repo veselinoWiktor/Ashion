@@ -78,5 +78,14 @@ namespace Ashion.Infrastructure.Data
             public const int MaxSizeNumberLength = 4;
             public const int MinSizeNumberLength = 1;
         }
+
+        public static class User
+        {
+            public const int MaxFirstNameLength = 50;
+            public const int MinFirstNameLength = 1;
+
+            public const int MaxLastNameLength = 50;
+            public const int MinLastNameLength = 1;
+        }
     }
 }
