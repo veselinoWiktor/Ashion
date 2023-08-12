@@ -23,8 +23,6 @@ namespace Ashion.Infrastructure.Data
 
         public DbSet<ClothSize> ClothesSizes { get; set; } = null!;
 
-        public DbSet<ClothColor> ClothesColors { get; set; } = null!;
-
         public DbSet<Color> Colors { get; set; } = null!;
 
         public DbSet<Cosmetic> Cosmetics { get; set; } = null!;
@@ -42,15 +40,14 @@ namespace Ashion.Infrastructure.Data
                 builder.ApplyConfiguration(new CategoryConfiguration());
                 builder.ApplyConfiguration(new ColorConfiguration());
                 builder.ApplyConfiguration(new SizeConfiguration());
+                builder.ApplyConfiguration(new ImageConfiguration());
             }
 
-            ////builder.ApplyConfiguration(new AccessoryConfiguration(seedDb));
-            builder.ApplyConfiguration(new ImageConfiguration(seedDb));
+            builder.ApplyConfiguration(new AccessoryConfiguration(seedDb));
             builder.ApplyConfiguration(new ClothConfiguration(seedDb));
             builder.ApplyConfiguration(new ClothSizeConfiguration(seedDb));
-            builder.ApplyConfiguration(new ClothColorConfiguration(seedDb));
-            ////builder.ApplyConfiguration(new CosmeticConfiguration(seedDb));
-            ////builder.ApplyConfiguration(new ReviewConfiguration(seedDb));
+            builder.ApplyConfiguration(new CosmeticConfiguration(seedDb));
+            builder.ApplyConfiguration(new ReviewConfiguration(seedDb));
 
             base.OnModelCreating(builder);
         }

@@ -44,11 +44,6 @@ namespace Ashion.Infrastructure.Data.Configurations
                 new ClothSize()
                 {
                     ClothId = 1,
-                    SizeId = 2
-                },
-                new ClothSize()
-                {
-                    ClothId = 1,
                     SizeId = 3
                 },
                 new ClothSize()
@@ -59,32 +54,96 @@ namespace Ashion.Infrastructure.Data.Configurations
                 new ClothSize()
                 {
                     ClothId = 1,
+                    SizeId = 5
+                },
+                //First T-Shirt
+                new ClothSize()
+                {
+                    ClothId = 2,
+                    SizeId = 2
+                },
+                new ClothSize()
+                {
+                    ClothId = 2,
+                    SizeId = 3
+                },
+                new ClothSize()
+                {
+                    ClothId = 2,
+                    SizeId = 4
+                },
+                //First T-Shirt
+                new ClothSize()
+                {
+                    ClothId = 3,
+                    SizeId = 3
+                },
+                new ClothSize()
+                {
+                    ClothId = 3,
+                    SizeId = 4
+                },
+                new ClothSize()
+                {
+                    ClothId = 3,
+                    SizeId = 5
+                },
+                //First T-Shirt
+                new ClothSize()
+                {
+                    ClothId = 4,
+                    SizeId = 2
+                },
+                new ClothSize()
+                {
+                    ClothId = 4,
+                    SizeId = 3
+                },
+                new ClothSize()
+                {
+                    ClothId = 4,
                     SizeId = 5
                 },
                 //Second T-Shirt
                 new ClothSize()
                 {
-                    ClothId = 2,
+                    ClothId = 5,
                     SizeId = 2
                 },
                 new ClothSize()
                 {
-                    ClothId = 2,
+                    ClothId = 5,
                     SizeId = 3
                 },
                 new ClothSize()
                 {
-                    ClothId = 2,
+                    ClothId = 5,
                     SizeId = 4
                 },
                 new ClothSize()
                 {
-                    ClothId = 2,
+                    ClothId = 5,
                     SizeId = 5
                 },
                 new ClothSize()
                 {
-                    ClothId = 2,
+                    ClothId = 5,
+                    SizeId = 6
+                },
+                //Second T-Shirt
+                new ClothSize()
+                {
+                    ClothId = 6,
+                    SizeId = 3
+                },
+                new ClothSize()
+                {
+                    ClothId = 6,
+                    SizeId = 5
+                },
+                new ClothSize()
+                {
+                    ClothId = 6,
                     SizeId = 6
                 }
             };

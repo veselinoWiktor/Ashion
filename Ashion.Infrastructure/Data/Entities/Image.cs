@@ -17,9 +17,5 @@ namespace Ashion.Infrastructure.Data.Entities
         [Required]
         [MaxLength(MaxUrlLength)]
         public string Url { get; set; } = null!;
-
-        public int? ClothColorId { get; set; }
-
-        public Color? ClothColor { get; set; }
     }
 }

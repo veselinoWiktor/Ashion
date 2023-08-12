@@ -11,6 +11,8 @@ namespace Ashion.Infrastructure.Data.Entities
         [Key]
         public int Id { get; set; }
 
+        public string PackageId { get; set; } = null!;
+
         [Required]
         [MaxLength(MaxNameLength)]
         public string Name { get; set; } = null!;
@@ -48,17 +50,17 @@ namespace Ashion.Infrastructure.Data.Entities
         [Required]
         public Category Category { get; set; } = null!;
 
-        public KnownColor Color { get; set; }
+        [Required]
+        public int ColorId { get; set; }
+
+        [Required]
+        public Color Color { get; set; } = null!;
 
         public IEnumerable<Image> Images { get; set; }
             = new List<Image>();
 
         public IEnumerable<Review> Reviews { get; set; }
             = new List<Review>();
-
-        [Required]
-        public IEnumerable<ClothColor> Colors { get; init; }
-            = new List<ClothColor>();
 
         [Required]
         public IEnumerable<ClothSize> Sizes { get; init; }
