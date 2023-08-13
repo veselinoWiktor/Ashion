@@ -96,7 +96,7 @@
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
                             <li>
-                                <a href="#">
+                                <a asp-controller="Likes" asp-action="Mine">
                                     <span class="icon_heart_alt"></span>
                                     <div class="tip">2</div>
                                 </a>
@@ -216,6 +216,7 @@
     <script src="~/js/owl.carousel.min.js"></script>
     <script src="~/js/jquery.nicescroll.min.js"></script>
     <script src="~/js/main.js"></script>
+    <script src="~/js/site.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -3,24 +3,38 @@
 <div class="col-lg-4 col-md-6">
     <div class="product__item">
         <div class="product__item__pic set-bg" data-setbg="@Model.ImageUrl">
-            <ul class="product__hover">
-                <li><a href="@Model.ImageUrl" class="image-popup"><span class="arrow_expand"></span></a></li>
-                <li><a href="#"><span class="icon_heart_alt"></span></a></li> <!--TODO-->
-                <li><a href="#"><span class="icon_bag_alt"></span></a></li> <!--TODO-->
-            </ul>
+            <form method="post">
+                <ul class="product__hover">
+                    <li><a href="@Model.ImageUrl" class="image-popup"><span class="arrow_expand"></span></a></li>
+                    <li><a class="like-button" onclick="AddToLikedProducts('Cloth',@Model.Id)"><span class="icon_heart_alt"></span></a></li> <!--TODO-->
+                    <li>
+                        <a><button asp-controller="Likes" asp-action="Like" asp-route-id="@Model.Id" asp-route-type="Cloth" type="submit" class="btn btn-link"><span class="icon_bag_alt"></span></button></a> <!--TODO-->
+                    </li>
+                </ul>
+            </form>
         </div>
         <div class="product__item__text">
             <h6><a href="#">@Model.Name</a></h6> <!--TODO-->
             <h6><strong>@Model.Brand</strong></h6> <!--TODO-->
             @*<div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
             </div>*@
             <br />
             <div class="product__price">@Model.Price</div>
         </div>
     </div>
 </div>
+
+@*@section Scripts {
+    <script>
+        let likesButton = $('#like-button');
+        likesButton.on('click', ev => {
+            likesButton.addClass('liked');
+            $.post('https://localhost:7120/likes/Like/@Model.Id');
+        })
+    </script>
+}*@

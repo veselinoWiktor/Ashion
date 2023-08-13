@@ -1,23 +1,28 @@
 ﻿using Ashion.Core.Contracts;
+using static Ashion.Web.Areas.Admin.AdminConstants;
 using Ashion.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Ashion.Web.Extensions;
 
 namespace Ashion.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly IShopService shop;
 
-        public HomeController(ILogger<HomeController> logger, IShopService shop)
+        public HomeController(IShopService shop)
         {
-            _logger = logger;
             this.shop = shop;
         }
 
         public async Task<IActionResult> Index()
         {
+            if (this.User.IsAdmin())
+            {
+                return RedirectToAction("Index", "Home", new { area = AreaName });
+            }
+
             var model = await shop.GetCountInformation();
 
             return View(model);

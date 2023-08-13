@@ -108,15 +108,15 @@ namespace Ashion.Core.Services
             int currentPage = 1,
             int productsPerPage = 9)
         {
-            var kidsClothesQuery = this.repository.AllReadonly<ClothColor>()
-                .Where(cc => cc.Cloth.ForKids == true
-                && cc.Cloth.Price > minPrice
-                && cc.Cloth.Price < maxPrice)
+            var kidsClothesQuery = this.repository.AllReadonly<Cloth>()
+                .Where(c => c.ForKids == true
+                && c.Price > minPrice
+                && c.Price < maxPrice)
                 .AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(category))
             {
-                kidsClothesQuery = kidsClothesQuery.Where(cc => cc.Cloth.Category.Name.ToLower() == category.ToLower());
+                kidsClothesQuery = kidsClothesQuery.Where(cc => cc.Category.Name.ToLower() == category.ToLower());
             }
 
             if (sizes != null)
@@ -124,7 +124,7 @@ namespace Ashion.Core.Services
                 var validSizes = sizes.Where(s => !String.IsNullOrWhiteSpace(s)).Select(c => c.ToLower()).ToList();
 
                 kidsClothesQuery = kidsClothesQuery
-                    .Where(cc => cc.Cloth.Sizes.Any(cs => validSizes.Contains(cs.Size.SizeNumber.ToLower())));
+                    .Where(c => c.Sizes.Any(cs => validSizes.Contains(cs.Size.SizeNumber.ToLower())));
             }
 
             if (colors != null)
@@ -132,19 +132,19 @@ namespace Ashion.Core.Services
                 var validColors = colors.Where(c => !String.IsNullOrWhiteSpace(c)).Select(c => c.ToLower()).ToList();
 
                 kidsClothesQuery = kidsClothesQuery
-                    .Where(cc => validColors.Contains(cc.Color.Name.ToLower()));
+                    .Where(c => validColors.Contains(c.Color.Name.ToLower()));
             }
 
             var kidsClothes = await kidsClothesQuery
                 .Skip((currentPage - 1) * productsPerPage)
                 .Take(productsPerPage)
-                .Select(cc => new ShopProductServiceModel()
+                .Select(c => new ShopProductServiceModel()
                 {
-                    Id = cc.ClothId,
-                    Name = cc.Cloth.Name,
-                    Brand = cc.Cloth.Brand,
-                    ImageUrl = cc.Cloth.Images.Where(i => i.ClothColorId == cc.ColorId).First().Url,
-                    Price = cc.Cloth.Price,
+                    Id = c.Id,
+                    Name = c.Name,
+                    Brand = c.Brand,
+                    ImageUrl = c.Images.First().Url,
+                    Price = c.Price,
                 })
                 .ToListAsync();
 
@@ -166,16 +166,16 @@ namespace Ashion.Core.Services
             int currentPage = 1,
             int productsPerPage = 9)
         {
-            var menClothesQuery = this.repository.AllReadonly<ClothColor>()
-                .Where(cc => cc.Cloth.Gender == Gender.Male 
-                && cc.Cloth.ForKids == false 
-                && cc.Cloth.Price > minPrice 
-                && cc.Cloth.Price < maxPrice)
+            var menClothesQuery = this.repository.AllReadonly<Cloth>()
+                .Where(c => c.Gender == Gender.Male 
+                && c.ForKids == false 
+                && c.Price > minPrice 
+                && c.Price < maxPrice)
                 .AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(category))
             {
-                menClothesQuery = menClothesQuery.Where(cc => cc.Cloth.Category.Name.ToLower() == category.ToLower());
+                menClothesQuery = menClothesQuery.Where(c => c.Category.Name.ToLower() == category.ToLower());
             }
 
             if (sizes != null)
@@ -183,7 +183,7 @@ namespace Ashion.Core.Services
                 var validSizes = sizes.Where(s => !String.IsNullOrWhiteSpace(s)).Select(c => c.ToLower()).ToList();
 
                 menClothesQuery = menClothesQuery
-                    .Where(cc => cc.Cloth.Sizes.Any(cs => validSizes.Contains(cs.Size.SizeNumber.ToLower())));
+                    .Where(c => c.Sizes.Any(cs => validSizes.Contains(cs.Size.SizeNumber.ToLower())));
             }
 
             if (colors != null)
@@ -191,19 +191,19 @@ namespace Ashion.Core.Services
                 var validColors = colors.Where(c => !String.IsNullOrWhiteSpace(c)).Select(c => c.ToLower()).ToList();
 
                 menClothesQuery = menClothesQuery
-                    .Where(cc => validColors.Contains(cc.Color.Name.ToLower()));
+                    .Where(c => validColors.Contains(c.Color.Name.ToLower()));
             }
 
             var mensClothes = await menClothesQuery
                 .Skip((currentPage - 1) * productsPerPage)
                 .Take(productsPerPage)
-                .Select(cc => new ShopProductServiceModel()
+                .Select(c => new ShopProductServiceModel()
                 {
-                    Id = cc.ClothId,
-                    Name = cc.Cloth.Name,
-                    Brand = cc.Cloth.Brand,
-                    ImageUrl = cc.Cloth.Images.Where(i => i.ClothColorId == cc.ColorId).First().Url,
-                    Price = cc.Cloth.Price,
+                    Id = c.Id,
+                    Name = c.Name,
+                    Brand = c.Brand,
+                    ImageUrl = c.Images.First().Url,
+                    Price = c.Price,
                 })
                 .ToListAsync();
 
@@ -225,16 +225,16 @@ namespace Ashion.Core.Services
             int currentPage = 1,
             int productsPerPage = 9)
         {
-            var womenClothesQuery = this.repository.AllReadonly<ClothColor>()
-                .Where(cc => cc.Cloth.Gender == Gender.Female
-                && cc.Cloth.ForKids == false
-                && cc.Cloth.Price > minPrice
-                && cc.Cloth.Price < maxPrice)
+            var womenClothesQuery = this.repository.AllReadonly<Cloth>()
+                .Where(c => c.Gender == Gender.Female
+                && c.ForKids == false
+                && c.Price > minPrice
+                && c.Price < maxPrice)
                 .AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(category))
             {
-                womenClothesQuery = womenClothesQuery.Where(cc => cc.Cloth.Category.Name.ToLower() == category.ToLower());
+                womenClothesQuery = womenClothesQuery.Where(c => c.Category.Name.ToLower() == category.ToLower());
             }
 
             if (sizes != null)
@@ -242,7 +242,7 @@ namespace Ashion.Core.Services
                 var validSizes = sizes.Where(s => !String.IsNullOrWhiteSpace(s)).Select(c => c.ToLower()).ToList();
 
                 womenClothesQuery = womenClothesQuery
-                    .Where(cc => cc.Cloth.Sizes.Any(cs => validSizes.Contains(cs.Size.SizeNumber.ToLower())));
+                    .Where(c => c.Sizes.Any(cs => validSizes.Contains(cs.Size.SizeNumber.ToLower())));
             }
 
             if (colors != null)
@@ -250,19 +250,19 @@ namespace Ashion.Core.Services
                 var validColors = colors.Where(c => !String.IsNullOrWhiteSpace(c)).Select(c => c.ToLower()).ToList();
 
                 womenClothesQuery = womenClothesQuery
-                    .Where(cc => validColors.Contains(cc.Color.Name.ToLower()));
+                    .Where(c => validColors.Contains(c.Color.Name.ToLower()));
             }
 
             var womensClothes = await womenClothesQuery
                 .Skip((currentPage - 1) * productsPerPage)
                 .Take(productsPerPage)
-                .Select(cc => new ShopProductServiceModel()
+                .Select(c => new ShopProductServiceModel()
                 {
-                    Id = cc.ClothId,
-                    Name = cc.Cloth.Name,
-                    Brand = cc.Cloth.Brand,
-                    ImageUrl = cc.Cloth.Images.Where(i => i.ClothColorId == cc.ColorId).First().Url,
-                    Price = cc.Cloth.Price,
+                    Id = c.Id,
+                    Name = c.Name,
+                    Brand = c.Brand,
+                    ImageUrl = c.Images.First().Url,
+                    Price = c.Price,
                 })
                 .ToListAsync();
 
@@ -277,12 +277,12 @@ namespace Ashion.Core.Services
 
         public async Task<HomeIndexServiceModel> GetCountInformation()
         {
-            var mensCount = await repository.AllReadonly<ClothColor>()
-                .Where(cc => cc.Cloth.Gender == Gender.Male)
+            var mensCount = await repository.AllReadonly<Cloth>()
+                .Where(cc => cc.Gender == Gender.Male)
                 .CountAsync();
 
-            var kidsCount = await repository.AllReadonly<ClothColor>()
-                .Where(cc => cc.Cloth.ForKids == true)
+            var kidsCount = await repository.AllReadonly<Cloth>()
+                .Where(cc => cc.ForKids == true)
                 .CountAsync();
 
             var cosmeticsCount = await repository.AllReadonly<Cosmetic>()

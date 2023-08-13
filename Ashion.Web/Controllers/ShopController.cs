@@ -37,6 +37,7 @@ namespace Ashion.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Mens([FromQuery]ShopQueryModel query)
         {
             var sizes = query.Sizes?.Split(',').ToArray();

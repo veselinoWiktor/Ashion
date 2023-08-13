@@ -1262,6 +1262,11 @@ ol {
 	transition: all, 0.5s;
 }
 
+.product__hover li a.liked {
+	background: #ca1515;
+	color: #ffffff;
+}
+
 .product__hover li a span {
 	position: relative;
 	-webkit-transform: rotate(0);
