@@ -277,7 +277,8 @@ Created: Colorib
         <br>
     </div>"*/
 
-    var next = 0;
+    var nextElement = $('#image-urls div:last-of-type');
+    var next = parseInt($(nextElement).attr('id').charAt($(nextElement).attr('id').length - 1));
     $("#add-more").click(function (e) {
         e.preventDefault();
         var addto = "#field" + next;
@@ -300,5 +301,20 @@ Created: Colorib
             $(fieldID).remove();
         });
     });
+
+    $('.remove-me').click(function (e) {
+        e.preventDefault();
+        var fieldNum = this.id.charAt(this.id.length - 1);
+        var fieldID = "#field" + fieldNum;
+        $(this).remove();
+        $(fieldID).remove();
+    });
+
+    $(function () {
+        $('[data-toggle="popover"]').popover({
+            container: 'body',
+            trigger: 'focus'
+        })
+    })
 
 })(jQuery);

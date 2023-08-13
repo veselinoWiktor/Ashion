@@ -2,12 +2,17 @@
 using Ashion.Core.Models.ProductsShared;
 using Ashion.Infrastructure.Data.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 using static Ashion.Infrastructure.Data.DataConstants.Product;
 
 namespace Ashion.Web.Areas.Admin.Models.Clothes
 {
     public class ClothFormModel
     {
+        [Required]
+        [Display(Name = "Package Identifier")]
+        public string PackageId { get; set; } = null!;
+
         [Required]
         [StringLength(MaxNameLength, MinimumLength = MinNameLength)]
         public string Name { get; set; } = null!;

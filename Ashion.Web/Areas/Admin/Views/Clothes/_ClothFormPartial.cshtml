@@ -6,6 +6,16 @@
         <form asp-action="Add">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="PackageId" class="control-label"></label>
+                <div class="input-group">
+                    <input asp-for="PackageId" class="form-control" value="@((Guid.NewGuid()).ToString())" />
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-danger" data-toggle="popover" title="Attention!" data-content="Copy the Package Identifier if you want to add the same cloth but different color!">!</button>
+                    </div>
+                </div>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -67,13 +77,44 @@
                 </select>
                 <span asp-validation-for="SizesIds" class="text-danger"></span>
             </div>
+            @{
+                var imageUrls = Model.ImageUrls.ToList();
+            }
             <div class="form-group">
                 <label asp-for="ImageUrls" class="control-label"></label>
-                <div class="form-inline">
-                    <div id="field0" class="form-inline col-md-9 px-0">
-                        <input asp-for="ImageUrls" class="form-control col-md-12" value="" placeholder="url..." />
-                    </div>
-                    <button type="button" id="add-more" class="btn btn-success col-md-3">Add</button>
+                <div id="image-urls" class="form-inline">
+                    @if (imageUrls.Count > 0)
+                    {
+
+                        @for (int i = 0; i < imageUrls.Count; i++)
+                        {
+                            <div id="field@(i)" class="form-inline col-md-9 px-0">
+                                <input asp-for="ImageUrls" class="form-control col-md-12" value="@imageUrls[i]" placeholder="URL..." />
+                                <br />
+                                <br />
+                            </div>
+                            if (i == imageUrls.Count - 1)
+                            {
+                                <button type="button" id="add-more" class="btn btn-success col-md-3">Add</button>
+                            }
+                            else
+                            {
+                                <button type="button" id="remove@(i)" class="btn btn-danger col-md-3 remove-me">Remove</button>
+                            }
+                        }
+
+                    }
+                    else
+                    {
+
+                        <div id="field0" class="form-inline col-md-9 px-0">
+                            <input asp-for="ImageUrls" class="form-control col-md-12" value="" placeholder="URL..." />
+                            <br />
+                            <br />
+                        </div>
+                        <button type="button" id="add-more" class="btn btn-success col-md-3">Add</button>
+
+                    }
                 </div>
                 <span asp-validation-for="ImageUrls" class="text-danger"></span>
             </div>

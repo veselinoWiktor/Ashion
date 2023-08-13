@@ -27,6 +27,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
                 Categories = await this.clothes.AllCategories(),
                 Colors = await this.clothes.AllColors(),
                 Sizes = await this.clothes.AllSizes(),
+                ImageUrls = new List<string>() { "asd", "bsd", "vsd"}
             });
         }
 
@@ -68,13 +69,20 @@ namespace Ashion.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
+            //if (!(await this.clothes.Exists(id)))
+            //{
+            //    return BadRequest();
+            //}
+
+            //var cloth = await this.c
+
             return View();
         }
 
         [HttpPost]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int id, ClothFormModel model)
         {
             return View();
         }
