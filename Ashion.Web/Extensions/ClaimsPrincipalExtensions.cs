@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using static Ashion.Web.Areas.Admin.AdminConstants;
 
 namespace Ashion.Web.Extensions
 {
@@ -11,7 +12,7 @@ namespace Ashion.Web.Extensions
 
         public static bool IsAdmin(this ClaimsPrincipal user)
         {
-            return user.IsInRole("Administrator");
+            return user.IsInRole(AdminRoleName);
         }
     }
 }
