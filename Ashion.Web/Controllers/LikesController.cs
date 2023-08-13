@@ -1,5 +1,5 @@
 ﻿using Ashion.Core.Contracts;
-using Ashion.Core.Models.Products;
+using Ashion.Core.Models.ProductsShared;
 using Ashion.Core.Models.Shop;
 using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Authorization;

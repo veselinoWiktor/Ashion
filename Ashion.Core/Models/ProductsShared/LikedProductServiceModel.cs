@@ -1,4 +1,4 @@
-﻿namespace Ashion.Core.Models.Products
+﻿namespace Ashion.Core.Models.ProductsShared
 {
     public class LikedProductServiceModel
     {

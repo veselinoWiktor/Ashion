@@ -1,5 +1,5 @@
 ﻿using Ashion.Core.Contracts;
-using Ashion.Core.Models.Products;
+using Ashion.Core.Models.ProductsShared;
 using Ashion.Infrastructure.Common;
 using Ashion.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;

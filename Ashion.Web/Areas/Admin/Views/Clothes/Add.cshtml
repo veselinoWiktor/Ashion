@@ -1,0 +1,14 @@
+﻿@model ClothFormModel
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1 class="text-center">Add Cloth</h1>
+<hr />
+
+<partial name="_ClothFormPartial" model="@Model" />
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

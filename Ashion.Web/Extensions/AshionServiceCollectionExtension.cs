@@ -9,6 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IShopService, ShopService>();
+            services.AddScoped<IClothService, ClothService>();
             services.AddScoped<ILikesService, LikesService>();
             services.AddScoped<IRepository, Repository>();
 
