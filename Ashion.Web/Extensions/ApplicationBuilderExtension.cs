@@ -1,5 +1,6 @@
 ﻿using Ashion.Infrastructure.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using static Ashion.Web.Areas.Admin.AdminConstants;
 
 namespace Ashion.Web.Extensions
 {
@@ -16,15 +17,15 @@ namespace Ashion.Web.Extensions
 
             Task.Run(async () =>
             {
-                if (await roleManager.RoleExistsAsync("Administrator"))
+                if (await roleManager.RoleExistsAsync(AdminRoleName))
                 {
                     return;
                 }
-                var role = new IdentityRole { Name = "Administrator" };
+                var role = new IdentityRole { Name = AdminRoleName };
 
                 await roleManager.CreateAsync(role);
 
-                var admin = await userManager.FindByNameAsync("admin@mail.com");
+                var admin = await userManager.FindByNameAsync(AdminEmail);
 
                 await userManager.AddToRoleAsync(admin, role.Name);
             })
