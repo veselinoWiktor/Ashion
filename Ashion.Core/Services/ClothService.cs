@@ -73,6 +73,36 @@ namespace Ashion.Core.Services
                 .AnyAsync(c => c.Id == categoryId);
         }
 
+        public async Task<ClothDetailsServiceModel> ClothDetailsById(int id)
+        {
+            return await this.repository.AllReadonly<Cloth>()
+                .Where(c => c.Id == id)
+                .Select(c => new ClothDetailsServiceModel()
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Brand = c.Brand,
+                    ShortContent = c.ShortContent,
+                    Description = c.Description,
+                    FashionType = c.ForKids ? "Kids" : c.Gender.ToString(),
+                    Price = c.Price,
+                    InStock = c.InStock,
+                    MainColor = new ClothColorServiceModel() { Id = c.ColorId, Name = c.Color.Name },
+                    ImageUrls = c.Images
+                        .Select(i => i.Url)
+                        .ToList(),
+                    Sizes = c.Sizes
+                        .Select(s => new ClothSizeServiceModel() { Id = s.Size.Id, SizeNumber = s.Size.SizeNumber })
+                        .ToList(),
+                    OtherColors = this.repository
+                        .AllReadonly<Cloth>()
+                        .Where(cl => cl.PackageId == c.PackageId && cl.ColorId != c.ColorId)
+                        .Select(cl => new ClothColorDetailsServiceModel() { Id = cl.ColorId, Name = cl.Color.Name, ClothId = cl.Id })
+                        .ToList()
+                })
+                .FirstAsync();
+        }
+
         public async Task<bool> ColorExists(int colorId)
         {
             return await this.repository.AllReadonly<Color>()
@@ -130,6 +160,11 @@ namespace Ashion.Core.Services
             await repository.SaveChangesAsync();
 
             return cloth.Id;
+        }
+
+        public async Task<bool> Exists(int id)
+        {
+            return await this.repository.AllReadonly<Cloth>().AnyAsync(c => c.Id == id); 
         }
     }
 }

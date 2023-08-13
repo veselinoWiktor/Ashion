@@ -22,5 +22,9 @@ namespace Ashion.Core.Contracts
             string? shortContent, string description, int qunatity,
             int categoryId, int colorId, Gender gender, bool forKids,
             IEnumerable<string> imageUrls, IEnumerable<int> sizeIds);
+
+        Task<bool> Exists(int id);
+
+        Task<ClothDetailsServiceModel> ClothDetailsById(int id);
     }
 }

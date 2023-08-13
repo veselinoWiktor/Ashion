@@ -1952,17 +1952,53 @@ ol {
 	content: "";
 }
 
-.product__details__widget ul li .color__checkbox label .checkmark.black-bg {
+.product__details__widget ul li .color__checkbox label .checkmark.beige {
+	background: #fde390;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.black {
 	background: #111111;
 }
 
-.product__details__widget ul li .color__checkbox label .checkmark.grey-bg {
-	background: #e4aa8b;
+.product__details__widget ul li .color__checkbox label .checkmark.blue {
+	background: #13327a;
 }
 
-.product__details__widget ul li .color__checkbox label .checkmark.white-bg {
+.product__details__widget ul li .color__checkbox label .checkmark.brown {
+	background: #4f2700;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.gray {
+	background: #666666;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.green {
+	background: #4cff00;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.orange {
+	background: #ea8e0a;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.pink {
+	background: #dc1878;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.purple {
+	background: #7f16e5;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.red {
+	background: #ca1515;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.white {
 	background: #ffffff;
-	border: 1px, solid, black;
+	border: 1px solid black;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.yellow {
+	background: #e5ff00;
 }
 
 .product__details__widget ul li .color__checkbox label .checkmark:after {
