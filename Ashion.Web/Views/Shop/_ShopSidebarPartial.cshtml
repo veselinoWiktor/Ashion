@@ -65,12 +65,9 @@
                             <div id="collapseFour" class="collapse @(ViewData["Title"] == "Accessories" ? "show" : string.Empty)" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
-                                        <li><a href="#">Coats</a></li>
-                                        <li><a href="#">Jackets</a></li>
-                                        <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Shirts</a></li>
-                                        <li><a href="#">T-shirts</a></li>
-                                        <li><a href="#">Jeans</a></li>
+                                        <li><a asp-area="" asp-controller="Shop" asp-action="Accessories" asp-route-Category="BagsandBackpacks">Bags and Backpacks</a></li>
+                                        <li><a asp-area="" asp-controller="Shop" asp-action="Accessories" asp-route-Category="Sunglasses">Sunglasses</a></li>
+                                        <li><a asp-area="" asp-controller="Shop" asp-action="Accessories" asp-route-Category="Jewelries">Jewelries</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -82,12 +79,9 @@
                             <div id="collapseFive" class="collapse @(ViewData["Title"] == "Cosmetics" ? "show" : string.Empty)" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
-                                        <li><a href="#">Coats</a></li>
-                                        <li><a href="#">Jackets</a></li>
-                                        <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Shirts</a></li>
-                                        <li><a href="#">T-shirts</a></li>
-                                        <li><a href="#">Jeans</a></li>
+                                        <li><a asp-area="" asp-controller="Shop" asp-action="Cosmetics" asp-route-Category="Antiagecosmetic">Antiage cosmetic</a></li>
+                                        <li><a asp-area="" asp-controller="Shop" asp-action="Cosmetics" asp-route-Category="Facecosmetic">Face cosmetic</a></li>
+                                        <li><a asp-area="" asp-controller="Shop" asp-action="Cosmetics" asp-route-Category="SPF">SPF</a></li>
                                     </ul>
                                 </div>
                             </div>

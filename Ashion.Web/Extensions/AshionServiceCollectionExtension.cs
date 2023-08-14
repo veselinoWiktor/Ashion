@@ -10,6 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddScoped<IShopService, ShopService>();
             services.AddScoped<IClothService, ClothService>();
+            services.AddScoped<IAccessoriesService, AccessoriesService>();
             services.AddScoped<ILikesService, LikesService>();
             services.AddScoped<IRepository, Repository>();
 

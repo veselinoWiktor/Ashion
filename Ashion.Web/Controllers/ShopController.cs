@@ -1,10 +1,7 @@
 ﻿using Ashion.Core.Contracts;
-using Ashion.Core.Models.Shop;
-using Ashion.Infrastructure.Data.Entities;
 using Ashion.Web.Models.Shop;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Ashion.Web.Controllers
 {

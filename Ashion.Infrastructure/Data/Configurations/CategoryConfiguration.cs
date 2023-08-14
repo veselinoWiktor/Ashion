@@ -55,7 +55,7 @@ namespace Ashion.Infrastructure.Data.Configurations
                 new Category()
                 {
                     Id = 7,
-                    Name = "Bags and Backpacks",
+                    Name = "BagsandBackpacks",
                     ProductType = ProductType.Accessory
                 },
                 new Category()
@@ -73,13 +73,13 @@ namespace Ashion.Infrastructure.Data.Configurations
                 new Category()
                 {
                     Id = 10,
-                    Name = "Antiage cosmetic",
+                    Name = "Antiagecosmetic",
                     ProductType = ProductType.Cosmetics,
                 },
                 new Category()
                 {
                     Id = 11,
-                    Name = "Face cosmetic",
+                    Name = "Facecosmetic",
                     ProductType = ProductType.Cosmetics
                 },
                 new Category()
