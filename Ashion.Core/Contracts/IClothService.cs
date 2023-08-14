@@ -18,7 +18,7 @@ namespace Ashion.Core.Contracts
 
         Task<bool> AllSizesExists(IEnumerable<int> sizesIds);
 
-        Task<int> Create(string name, string brand, decimal price,
+        Task<int> Create(string name, string brand, decimal price, string packageId,
             string? shortContent, string description, int qunatity,
             int categoryId, int colorId, Gender gender, bool forKids,
             IEnumerable<string> imageUrls, IEnumerable<int> sizeIds);
@@ -26,5 +26,14 @@ namespace Ashion.Core.Contracts
         Task<bool> Exists(int id);
 
         Task<ClothDetailsServiceModel> ClothDetailsById(int id);
+
+        Task<ClothServiceModel> ClothDetailsForEditById(int id);
+
+        Task Edit(int clothId, string name, string brand, decimal price, string packageId,
+            string? shortContent, string description, int qunatity,
+            int categoryId, int colorId, Gender gender, bool forKids,
+            IEnumerable<string> imageUrls, IEnumerable<int> sizeIds);
+
+        Task<string> Delete(int clothId);
     }
 }

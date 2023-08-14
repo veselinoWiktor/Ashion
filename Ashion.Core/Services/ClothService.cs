@@ -103,20 +103,43 @@ namespace Ashion.Core.Services
                 .FirstAsync();
         }
 
+        public async Task<ClothServiceModel> ClothDetailsForEditById(int id)
+        {
+            return await this.repository.AllReadonly<Cloth>()
+               .Where(c => c.Id == id)
+               .Select(c => new ClothServiceModel()
+               {
+                   Name = c.Name,
+                   Brand = c.Brand,
+                   ShortContent = c.ShortContent,
+                   Description = c.Description,
+                   Price = c.Price,
+                   Quantity = c.Quantity,
+                   CategoryId = c.CategoryId,
+                   ColorId = c.ColorId,
+                   ForKids = c.ForKids,
+                   Gender = c.Gender,
+                   ImageUrls = c.Images.Select(i => i.Url).ToList(),
+                   PackageId = c.PackageId,
+                   SizesIds = c.Sizes.Select(s => s.SizeId).ToList(),
+               })
+               .FirstAsync();
+        }
+
         public async Task<bool> ColorExists(int colorId)
         {
             return await this.repository.AllReadonly<Color>()
                 .AnyAsync(c => c.Id == colorId);
         }
 
-        public async Task<int> Create(string name, string brand, decimal price,
+        public async Task<int> Create(string name, string brand, decimal price, string packageId,
             string? shortContent, string description, int qunatity,
             int categoryId, int colorId, Gender gender, bool forKids,
             IEnumerable<string> imageUrls, IEnumerable<int> sizeIds)
         {
             var cloth = new Cloth()
             {
-                PackageId = (new Guid()).ToString(),
+                PackageId = packageId,
                 Name = name,
                 Brand = brand,
                 Price = price,
@@ -164,7 +187,111 @@ namespace Ashion.Core.Services
 
         public async Task<bool> Exists(int id)
         {
-            return await this.repository.AllReadonly<Cloth>().AnyAsync(c => c.Id == id); 
+            return await this.repository.AllReadonly<Cloth>().AnyAsync(c => c.Id == id);
+        }
+
+        public async Task Edit(int clothId, string name, string brand,
+            decimal price, string packageId, string? shortContent, string description,
+            int qunatity, int categoryId, int colorId, Gender gender,
+            bool forKids, IEnumerable<string> imageUrls, IEnumerable<int> sizeIds)
+        {
+            var cloth = await this.repository.All<Cloth>()
+                .Where(c => c.Id == clothId)
+                .Include(c => c.Images)
+                .Include(c => c.Sizes)
+                .ThenInclude(cs => cs.Size)
+                .FirstAsync();
+
+            cloth.PackageId = packageId;
+            cloth.Name = name;
+            cloth.Brand = brand;
+            cloth.Price = price;
+            cloth.ShortContent = shortContent;
+            cloth.Description = description;
+            cloth.Quantity = qunatity;
+            cloth.CategoryId = categoryId;
+            cloth.ColorId = colorId;
+            cloth.Gender = gender;
+            cloth.ForKids = forKids;
+
+            var imageIds = cloth.Images.Select(i => i.Id).ToList();
+
+            foreach (var imageId in imageIds)
+            {
+                await this.repository.DeleteAsync<Image>(imageId); 
+            }
+
+            var currentSizeIds = cloth.Sizes.Select(cs => cs.SizeId).ToList();
+
+            foreach (var sizeId in currentSizeIds)
+            {
+                var clothSize = await this.repository.GetByIdsAsync<ClothSize>(new object[] { clothId, sizeId });
+
+                this.repository.Delete<ClothSize>(clothSize);
+            }
+
+            var images = new List<Image>();
+            foreach (var imageUrl in imageUrls)
+            {
+                var image = new Image()
+                {
+                    Url = imageUrl
+                };
+
+                images.Add(image);
+            }
+
+            cloth.Images = images;
+
+            foreach (var sizeId in sizeIds)
+            {
+                var clothSize = new ClothSize()
+                {
+                    ClothId = clothId,
+                    SizeId = sizeId,
+                };
+
+                await this.repository.AddAsync(clothSize);
+            }
+
+            await this.repository.SaveChangesAsync();
+        }
+
+        public async Task<string> Delete(int clothId)
+        {
+            var cloth = await this.repository.All<Cloth>()
+                .Where(c => c.Id == clothId)
+                .Include(c => c.Images)
+                .Include(c => c.Sizes)
+                .FirstAsync();
+
+            
+
+            foreach (var image in cloth.Images)
+            {
+                this.repository.Delete<Image>(image);
+            }
+
+            foreach (var clothSize in cloth.Sizes)
+            {
+                this.repository.Delete<ClothSize>(clothSize);
+            }
+
+            this.repository.Delete<Cloth>(cloth);
+            await this.repository.SaveChangesAsync();
+
+            if (cloth.ForKids == true)
+            {
+                return "Kids";
+            }
+            else if(cloth.Gender == Gender.Male)
+            {
+                return "Mens";
+            }
+            else
+            {
+                return "Womens";
+            }
         }
     }
 }

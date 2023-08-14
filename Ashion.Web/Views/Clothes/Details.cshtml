@@ -74,7 +74,15 @@
                         </div>
                         <a href="#" class="cart-btn"><span class="icon_bag_alt"></span>Add to cart</a>
                         <ul>
-                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                            @if (this.User.IsAdmin())
+                            {
+                                <li><a asp-area="Admin" asp-controller="Clothes" asp-action="Edit" asp-route-Id="@Model.Id"><span class="icon_pencil-edit"></span></a></li>
+                                <li><a asp-area="Admin" asp-controller="Clothes" asp-action="Delete" asp-route-Id="@Model.Id"><span class="icon_minus-06"></span></a></li>
+                            }
+                            else
+                            {
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                            }
                         </ul>
                     </div>
                     <div class="product__details__widget">
@@ -114,15 +122,15 @@
                                     @foreach (var size in Model.Sizes)
                                     {
                                         <label for="@size.SizeNumber">
-                                        <input type="radio" id="@size.SizeNumber">
-                                        @size.SizeNumber
+                                            <input type="radio" id="@size.SizeNumber">
+                                            @size.SizeNumber
                                         </label>
                                     }
                                 </div>
                             </li>
                             @*<li>
-                                <span>Promotions:</span>
-                                <p>Free shipping</p>
+                            <span>Promotions:</span>
+                            <p>Free shipping</p>
                             </li>*@
                         </ul>
                     </div>

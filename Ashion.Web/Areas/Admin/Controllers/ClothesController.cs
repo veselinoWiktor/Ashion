@@ -14,20 +14,13 @@ namespace Ashion.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult All()
-        {
-            return View();
-        }
-
-        [HttpGet]
         public async Task<IActionResult> Add()
         {
             return View(new ClothFormModel()
             {
                 Categories = await this.clothes.AllCategories(),
                 Colors = await this.clothes.AllColors(),
-                Sizes = await this.clothes.AllSizes(),
-                ImageUrls = new List<string>() { "asd", "bsd", "vsd"}
+                Sizes = await this.clothes.AllSizes()
             });
         }
 
@@ -61,7 +54,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
                 return View(model);
             }
 
-            var newClothId = await this.clothes.Create(model.Name, model.Brand, model.Price,
+            var newClothId = await this.clothes.Create(model.Name, model.Brand, model.Price, model.PackageId,
                 model.ShortContent, model.Description, model.Quantity, model.CategoryId, model.ColorId,
                 model.Gender, model.ForKids, model.ImageUrls, model.SizesIds);
 
@@ -69,34 +62,112 @@ namespace Ashion.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            //if (!(await this.clothes.Exists(id)))
-            //{
-            //    return BadRequest();
-            //}
+            if (!(await this.clothes.Exists(id)))
+            {
+                return BadRequest();
+            }
 
-            //var cloth = await this.c
+            var cloth = await this.clothes.ClothDetailsForEditById(id);
 
-            return View();
+            var clothModel = new ClothFormModel()
+            {
+                PackageId = cloth.PackageId,
+                Name = cloth.Name,
+                Brand = cloth.Brand,
+                ShortContent = cloth.ShortContent,
+                Description = cloth.Description,
+                Price = cloth.Price,
+                Quantity = cloth.Quantity,
+                CategoryId = cloth.CategoryId,
+                ColorId = cloth.ColorId,
+                ForKids = cloth.ForKids,
+                Gender = cloth.Gender,
+                ImageUrls = cloth.ImageUrls,
+                SizesIds = cloth.SizesIds,
+                Categories = await this.clothes.AllCategories(),
+                Colors = await this.clothes.AllColors(),
+                Sizes = await this.clothes.AllSizes(),
+            };
+
+            return View(clothModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, ClothFormModel model)
+        public async Task<IActionResult> Edit(int id, ClothFormModel model)
         {
-            return View();
+            if (!(await this.clothes.Exists(id)))
+            {
+                return this.View();
+            }
+
+            if (!(await this.clothes.CategoryExists(model.CategoryId)))
+            {
+                this.ModelState.AddModelError(nameof(model.CategoryId),
+                    "Category does not exist.");
+            }
+
+            if (!(await this.clothes.ColorExists(model.ColorId)))
+            {
+                this.ModelState.AddModelError(nameof(model.ColorId),
+                    "Color does not exist.");
+            }
+
+            if (!(await this.clothes.AllSizesExists(model.SizesIds)))
+            {
+                this.ModelState.AddModelError(nameof(model.SizesIds),
+                    "Some size/s does not exist.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.Categories = await this.clothes.AllCategories();
+                model.Colors = await this.clothes.AllColors();
+                model.Sizes = await this.clothes.AllSizes();
+
+                return View(model);
+            }
+
+            await this.clothes.Edit(id, model.Name, model.Brand, model.Price, model.PackageId, model.ShortContent,
+                model.Description, model.Quantity, model.CategoryId, model.ColorId, model.Gender,
+                model.ForKids, model.ImageUrls, model.SizesIds);
+
+            return RedirectToAction("Details", "Clothes", new { id, area = "" });
         }
 
         [HttpGet]
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            if (!(await this.clothes.Exists(id)))
+            {
+                return BadRequest();
+            }
+
+            var cloth = await this.clothes.ClothDetailsForEditById(id);
+
+            var model = new ClothDetailsViewModel()
+            {
+                Id = cloth.Id,
+                Name = cloth.Name,
+                Brand = cloth.Brand,
+                ImageUrl = cloth.ImageUrls.First(),
+            };
+
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(ClothDetailsViewModel model)
         {
-            return View();
+            if (!(await this.clothes.Exists(model.Id)))
+            {
+                return BadRequest();
+            }
+
+            var action = await this.clothes.Delete(model.Id);
+
+            return RedirectToAction(action, "Shop", new { area = "" });
         }
     }
 }

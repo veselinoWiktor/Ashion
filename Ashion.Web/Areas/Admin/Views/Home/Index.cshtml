@@ -12,17 +12,25 @@
         You can also see <b>all users</b> and <b>carts</b> in the system.
     </p>
     <hr class="my-4">
-    <a asp-area="Admin" asp-controller="Clothes" asp-action="All"
-       class="btn btn-primary btn-lg">All Clothes</a>
+    <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        All Clothes
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" asp-area="" asp-controller="Shop" asp-action="Mens">Men's Fashion</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" asp-area="" asp-controller="Shop" asp-action="Womens">Women's Fashion</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" asp-area="" asp-controller="Shop" asp-action="Kids">Kid's Fashion</a>
+    </div>
     <a asp-area="Admin" asp-controller="Clothes" asp-action="Add"
        class="btn btn-primary btn-lg">Add Cloth</a>
     <span>  |   </span>
-    <a asp-area="Admin" asp-controller="Cosmetics" asp-action="All"
+    <a asp-area="" asp-controller="Shop" asp-action="Cosmetics"
        class="btn btn-primary btn-lg">All Cosmetics</a>
     <a asp-area="Admin" asp-controller="Cosmetics" asp-action="Add"
        class="btn btn-primary btn-lg">Add Cosmetic</a>
     <span>  |   </span>
-    <a asp-area="Admin" asp-controller="Accessories" asp-action="All"
+    <a asp-area="" asp-controller="Shop" asp-action="Accessories"
        class="btn btn-primary btn-lg">All Accessories</a>
     <a asp-area="Admin" asp-controller="Accessories" asp-action="Add"
        class="btn btn-primary btn-lg">Add Accessory</a>
