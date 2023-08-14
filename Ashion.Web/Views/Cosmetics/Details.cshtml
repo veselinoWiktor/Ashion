@@ -1,0 +1,146 @@
+﻿@model CosmeticDetailsServiceModel
+
+@{
+    ViewBag.Title = "Cosmetic Details";
+}
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i>Home</a>
+                    <a asp-area="" asp-controller="Shop" asp-action="Cosmetics">Cosmetics</a>
+                    <span>@Model.Name</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__left product__thumb nice-scroll">
+                        @{
+                            var imageUrls = Model.ImageUrls.ToList();
+                        }
+                        @for (int i = 0; i < imageUrls.Count; i++)
+                        {
+                            <a class="pt active" href="#product-@(i)">
+                                <img src="@imageUrls[i]" alt="">
+                            </a>
+                        }
+                    </div>
+                    <div class="product__details__slider__content">
+                        <div class="product__details__pic__slider owl-carousel">
+                            @for (int i = 0; i < imageUrls.Count; i++)
+                            {
+                                <img data-hash="product-@(i)" class="product__big__img" src="@imageUrls[i]" alt="">
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product__details__text">
+                    <h3>@Model.Name <span>Brand: @Model.Brand</span></h3>
+                    <div class="product__details__price">$ @String.Format("{0:f2}", Model.Price)</div>
+                    @if (Model.ShortContent != null)
+                    {
+                        <p>@Model.ShortContent</p>
+                    }
+                    <div class="product__details__button">
+                        <div class="quantity">
+                            <span>Quantity:</span>
+                            <div class="pro-qty">
+                                <input type="text" value="1">
+                            </div>
+                        </div>
+                        <a href="#" class="cart-btn"><span class="icon_bag_alt"></span>Add to cart</a>
+                        <ul>
+                            @if (this.User.IsAdmin())
+                            {
+                                <li><a asp-area="Admin" asp-controller="Cosmetics" asp-action="Edit" asp-route-Id="@Model.Id"><span class="icon_pencil-edit"></span></a></li>
+                                <li><a asp-area="Admin" asp-controller="Cosmetics" asp-action="Delete" asp-route-Id="@Model.Id"><span class="icon_minus-06"></span></a></li>
+                            }
+                            else
+                            {
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="product__details__widget">
+                        <ul>
+                            <li>
+                                <span>Availability:</span>
+                                <div class="stock__checkbox">
+                                    <label for="stockin">
+                                        In Stock
+                                        <input type="checkbox" id="stockin" @(Model.InStock == true ? "checked" : "") disabled>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </li>
+                            @*<li>
+                            <span>Promotions:</span>
+                            <p>Free shipping</p>
+                            </li>*@
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Ingredients</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Reviews ( 2 )</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <h6>Description</h6>
+                            <p>
+                                @Model.Description
+                            </p>
+                        </div>
+                        <div class="tab-pane active" id="tabs-2" role="tabpanel">
+                            <h6>Ingredients</h6>
+                            <p>
+                                @Model.Ingredients
+                            </p>
+                        </div>
+                        <div class="tab-pane" id="tabs-3" role="tabpanel">
+                            <h6>Reviews ( 2 )</h6>
+                            <p>
+                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
+                                quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
+                                Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
+                                voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
+                                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
+                                consequat massa quis enim.
+                            </p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+                                dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                                quis, sem.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->

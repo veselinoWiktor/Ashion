@@ -54,10 +54,6 @@ namespace Ashion.Infrastructure.Data.Entities
             = new List<Review>();
 
         [Required]
-        [MaxLength(MaxLabelLength)]
-        public string Label { get; set; } = null!;
-
-        [Required]
         [MaxLength(MaxIngredintsLength)]
         public string Ingredients { get; set; } = null!;
     }

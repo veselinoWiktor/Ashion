@@ -23,8 +23,4 @@
     <ProjectReference Include="..\Ashion.Core\Ashion.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Cosmetics\" />
-  </ItemGroup>
-
 </Project>
