@@ -1,5 +1,6 @@
 ﻿using Ashion.Core.Models.Clothes;
 using Ashion.Core.Models.ProductsShared;
+using Ashion.Core.Models.Shop;
 using Ashion.Infrastructure.Data.Enums;
 
 namespace Ashion.Core.Contracts
@@ -35,5 +36,7 @@ namespace Ashion.Core.Contracts
             IEnumerable<string> imageUrls, IEnumerable<int> sizeIds);
 
         Task<string> Delete(int clothId);
+
+        Task<ShopProductServiceModel> GetClothById(int id);
     }
 }

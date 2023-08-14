@@ -44,6 +44,7 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
+                    Description = c.Description,
                     ImageUrl = c.Images.First().Url,
                     Price = c.Price,
                 })
@@ -85,6 +86,7 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
+                    Description = c.Description,
                     ImageUrl = c.Images.First().Url,
                     Price = c.Price,
                 })
@@ -143,6 +145,7 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
+                    Description = c.Description,
                     ImageUrl = c.Images.First().Url,
                     Price = c.Price,
                 })
@@ -202,6 +205,7 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
+                    Description = c.Description,
                     ImageUrl = c.Images.First().Url,
                     Price = c.Price,
                 })
@@ -261,6 +265,7 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
+                    Description = c.Description,
                     ImageUrl = c.Images.First().Url,
                     Price = c.Price,
                 })

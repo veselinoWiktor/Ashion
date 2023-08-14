@@ -1,6 +1,7 @@
 ﻿using Ashion.Core.Contracts;
 using Ashion.Core.Models.Clothes;
 using Ashion.Core.Models.ProductsShared;
+using Ashion.Core.Models.Shop;
 using Ashion.Infrastructure.Common;
 using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
@@ -292,6 +293,19 @@ namespace Ashion.Core.Services
             {
                 return "Womens";
             }
+        }
+
+        public async Task<ShopProductServiceModel> GetClothById(int id)
+        {
+            return await this.repository.AllReadonly<Cloth>()
+                .Where(c => c.Id == id)
+                .Select(c => new ShopProductServiceModel()
+                {
+                    Name = c.Name,
+                    Brand = c.Brand,
+                    Description = c.Description
+                })
+                .FirstAsync();
         }
     }
 }

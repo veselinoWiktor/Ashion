@@ -1,5 +1,7 @@
 ﻿using Ashion.Core.Contracts;
+using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 
 namespace Ashion.Web.Controllers
 {
@@ -12,7 +14,7 @@ namespace Ashion.Web.Controllers
             this.clothes = clothes;
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, string information)
         {
             if (!(await clothes.Exists(id)))
             {
@@ -20,6 +22,11 @@ namespace Ashion.Web.Controllers
             }
 
             var clothModel = await this.clothes.ClothDetailsById(id);
+
+            if (information != clothModel.GetInformation())
+            {
+                return BadRequest();
+            }
 
             return View(clothModel);
         }

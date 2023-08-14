@@ -1,5 +1,6 @@
 ﻿using Ashion.Core.Contracts;
 using Ashion.Web.Areas.Admin.Models.Clothes;
+using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashion.Web.Areas.Admin.Controllers
@@ -58,7 +59,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
                 model.ShortContent, model.Description, model.Quantity, model.CategoryId, model.ColorId,
                 model.Gender, model.ForKids, model.ImageUrls, model.SizesIds);
 
-            return RedirectToAction("Details", "Clothes", new { id = newClothId, area = "" });
+            return RedirectToAction("Details", "Clothes", new { id = newClothId, information = model.GetInformation(), area = "" });
         }
 
         [HttpGet]
@@ -133,7 +134,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
                 model.Description, model.Quantity, model.CategoryId, model.ColorId, model.Gender,
                 model.ForKids, model.ImageUrls, model.SizesIds);
 
-            return RedirectToAction("Details", "Clothes", new { id, area = "" });
+            return RedirectToAction("Details", "Clothes", new { id, information = model.GetInformation(), area = "" });
         }
 
         [HttpGet]

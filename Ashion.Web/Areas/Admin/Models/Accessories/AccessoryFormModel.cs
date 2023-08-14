@@ -4,7 +4,7 @@ using static Ashion.Infrastructure.Data.DataConstants.Product;
 
 namespace Ashion.Web.Areas.Admin.Models.Accessories
 {
-    public class AccessoryFormModel
+    public class AccessoryFormModel : IProductModel
     {
         [Required]
         [StringLength(MaxNameLength, MinimumLength = MinNameLength)]

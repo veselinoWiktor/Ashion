@@ -1,4 +1,5 @@
-﻿using Ashion.Core.Models.Shop;
+﻿using Ashion.Core.Models.ProductsShared;
+using Ashion.Core.Models.Shop;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ashion.Core.Models.Clothes
@@ -9,9 +10,6 @@ namespace Ashion.Core.Models.Clothes
         public string FashionType { get; set; } = null!;
 
         public string? ShortContent { get; set; }
-
-        [Required]
-        public string Description { get; set; } = null!;
 
         [Required]
         public bool InStock { get; set; }

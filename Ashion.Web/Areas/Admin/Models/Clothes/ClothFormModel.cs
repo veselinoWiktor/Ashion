@@ -7,7 +7,7 @@ using static Ashion.Infrastructure.Data.DataConstants.Product;
 
 namespace Ashion.Web.Areas.Admin.Models.Clothes
 {
-    public class ClothFormModel
+    public class ClothFormModel : IProductModel
     {
         [Required]
         [Display(Name = "Package Identifier")]

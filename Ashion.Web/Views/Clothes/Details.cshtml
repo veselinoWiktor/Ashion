@@ -1,4 +1,5 @@
 ﻿@model ClothDetailsServiceModel
+@inject IClothService clothes
 
 @{
     ViewBag.Title = "Cloth Details";
@@ -110,7 +111,7 @@
                                         {
                                             <label for="@color.Name">
                                                 <input type="radio" name="color__radio" id="@color.Name">
-                                                <a asp-area="" asp-controller="Clothes" asp-action="Details" asp-route-id="@color.ClothId"><span class="checkmark @color.Name.ToLower()"></span></a>
+                                                <a asp-area="" asp-controller="Clothes" asp-action="Details" asp-route-id="@color.ClothId" asp-route-information="@((await clothes.GetClothById(color.ClothId)).GetInformation())"><span class="checkmark @color.Name.ToLower()"></span></a>
                                             </label>
                                         }
                                     }

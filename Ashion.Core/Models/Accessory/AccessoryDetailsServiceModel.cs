@@ -1,4 +1,5 @@
-﻿using Ashion.Core.Models.Shop;
+﻿using Ashion.Core.Models.ProductsShared;
+using Ashion.Core.Models.Shop;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,9 +12,6 @@ namespace Ashion.Core.Models.Accessory
     public class AccessoryDetailsServiceModel : ShopProductServiceModel
     {
         public string? ShortContent { get; set; }
-
-        [Required]
-        public string Description { get; set; } = null!;
 
         [Required]
         public int Quantity { get; set; }

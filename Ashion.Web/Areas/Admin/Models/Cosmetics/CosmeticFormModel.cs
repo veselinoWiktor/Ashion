@@ -5,7 +5,7 @@ using static Ashion.Infrastructure.Data.DataConstants.Cosmetic;
 
 namespace Ashion.Web.Areas.Admin.Models.Cosmetics
 {
-    public class CosmeticFormModel
+    public class CosmeticFormModel : IProductModel
     {
         [Required]
         [StringLength(MaxNameLength, MinimumLength = MinNameLength)]

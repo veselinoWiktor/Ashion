@@ -15,8 +15,6 @@ namespace Ashion.Core.Models.Clothes
 
         public string? ShortContent { get; set; }
 
-        public string Description { get; set; } = null!;
-
         public int Quantity { get; set; }
 
         public int CategoryId { get; set; }

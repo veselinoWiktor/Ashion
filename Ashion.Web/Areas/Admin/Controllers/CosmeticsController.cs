@@ -1,6 +1,7 @@
 ﻿using Ashion.Core.Contracts;
 using Ashion.Web.Areas.Admin.Models.Accessories;
 using Ashion.Web.Areas.Admin.Models.Cosmetics;
+using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashion.Web.Areas.Admin.Controllers
@@ -42,7 +43,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
             var newCosmeticId = await this.cosmetics.Create(model.Name, model.Brand, model.Price,
                 model.ShortContent, model.Description, model.Ingredients, model.Quantity, model.CategoryId, model.ImageUrls);
 
-            return RedirectToAction("Details", "Cosmetics", new { id = newCosmeticId, area = "" });
+            return RedirectToAction("Details", "Cosmetics", new { id = newCosmeticId, information = model.GetInformation(), area = "" });
         }
 
         [HttpGet]
@@ -98,7 +99,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
             await this.cosmetics.Edit(id, model.Name, model.Brand, model.Price, model.ShortContent,
                 model.Description, model.Ingredients, model.Quantity, model.CategoryId, model.ImageUrls);
 
-            return RedirectToAction("Details", "Cosmetics", new { id, area = "" });
+            return RedirectToAction("Details", "Cosmetics", new { id, information = model.GetInformation(), area = "" });
         }
 
         [HttpGet]

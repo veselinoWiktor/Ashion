@@ -1,6 +1,7 @@
 ﻿using Ashion.Core.Contracts;
 using Ashion.Web.Areas.Admin.Models.Accessories;
 using Ashion.Web.Areas.Admin.Models.Clothes;
+using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashion.Web.Areas.Admin.Controllers
@@ -42,7 +43,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
             var newAccessoryId = await this.accessories.Create(model.Name, model.Brand, model.Price,
                 model.ShortContent, model.Description, model.Quantity, model.CategoryId, model.ImageUrls);
 
-            return RedirectToAction("Details", "Accessory", new { id = newAccessoryId, area = "" });
+            return RedirectToAction("Details", "Accessory", new { id = newAccessoryId, information = model.GetInformation(), area = "" });
         }
 
         [HttpGet]
@@ -97,7 +98,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
             await this.accessories.Edit(id, model.Name, model.Brand, model.Price, model.ShortContent,
                 model.Description, model.Quantity, model.CategoryId, model.ImageUrls);
 
-            return RedirectToAction("Details", "Accessories", new { id, area = "" });
+            return RedirectToAction("Details", "Accessories", new { id, information = model.GetInformation(), area = "" });
         }
 
         [HttpGet]

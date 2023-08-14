@@ -22,7 +22,7 @@
             </form>
         </div>
         <div class="product__item__text">
-            <h6><a asp-area="" asp-controller="@(ViewData["Title"].ToString().Contains("Clothes") ? "Clothes" : ViewData["Title"])" asp-action="Details" asp-route-id="@Model.Id">@Model.Name</a></h6> <!--TODO-->
+            <h6><a asp-area="" asp-controller="@(ViewData["Title"].ToString().Contains("Clothes") ? "Clothes" : ViewData["Title"])" asp-action="Details" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()">@Model.Name</a></h6> <!--TODO-->
             <h6><strong>@Model.Brand</strong></h6> <!--TODO-->
             @*<div class="rating">
             <i class="fa fa-star"></i>
