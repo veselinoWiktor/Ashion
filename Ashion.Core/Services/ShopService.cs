@@ -3,7 +3,6 @@ using Ashion.Core.Models.Shop;
 using Ashion.Infrastructure.Common;
 using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
-using Ashion.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 

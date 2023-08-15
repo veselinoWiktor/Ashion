@@ -2,7 +2,6 @@
 using Ashion.Core.Models.ProductsShared;
 using Ashion.Infrastructure.Data.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
 using static Ashion.Infrastructure.Data.DataConstants.Product;
 
 namespace Ashion.Web.Areas.Admin.Models.Clothes

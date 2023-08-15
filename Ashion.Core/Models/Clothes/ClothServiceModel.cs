@@ -1,11 +1,5 @@
 ﻿using Ashion.Core.Models.Shop;
 using Ashion.Infrastructure.Data.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ashion.Core.Models.Clothes
 {

@@ -1,7 +1,6 @@
 ﻿using Ashion.Infrastructure.Data.Enums;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 using static Ashion.Infrastructure.Data.DataConstants.Product;
 
 namespace Ashion.Infrastructure.Data.Entities

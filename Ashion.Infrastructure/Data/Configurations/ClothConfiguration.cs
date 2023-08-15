@@ -2,8 +2,6 @@
 using Ashion.Infrastructure.Data.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static Ashion.Infrastructure.Data.Configurations.ColorConfiguration;
-using static Ashion.Infrastructure.Data.Configurations.SizeConfiguration;
 
 namespace Ashion.Infrastructure.Data.Configurations
 {

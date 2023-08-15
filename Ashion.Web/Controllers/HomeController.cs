@@ -1,9 +1,7 @@
 ﻿using Ashion.Core.Contracts;
-using static Ashion.Web.Areas.Admin.AdminConstants;
-using Ashion.Web.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using Ashion.Web.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using static Ashion.Web.Areas.Admin.AdminConstants;
 
 namespace Ashion.Web.Controllers
 {

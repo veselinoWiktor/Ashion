@@ -4,8 +4,6 @@ using Ashion.Core.Models.Shop;
 using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Build.Experimental.ProjectCache;
-using System.Text;
 
 namespace Ashion.Web.Controllers
 {

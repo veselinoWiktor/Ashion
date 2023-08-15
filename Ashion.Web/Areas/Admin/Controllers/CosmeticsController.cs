@@ -1,5 +1,4 @@
 ﻿using Ashion.Core.Contracts;
-using Ashion.Web.Areas.Admin.Models.Accessories;
 using Ashion.Web.Areas.Admin.Models.Cosmetics;
 using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Mvc;

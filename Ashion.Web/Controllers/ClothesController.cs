@@ -1,7 +1,6 @@
 ﻿using Ashion.Core.Contracts;
 using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 
 namespace Ashion.Web.Controllers
 {

@@ -1,6 +1,5 @@
 ﻿using Ashion.Core.Contracts;
 using Ashion.Web.Areas.Admin.Models.Accessories;
-using Ashion.Web.Areas.Admin.Models.Clothes;
 using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Mvc;
 

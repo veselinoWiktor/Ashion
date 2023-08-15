@@ -1,5 +1,4 @@
-﻿using Ashion.Core.Models.ProductsShared;
-using Ashion.Core.Models.Shop;
+﻿using Ashion.Core.Models.Shop;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ashion.Core.Models.Clothes

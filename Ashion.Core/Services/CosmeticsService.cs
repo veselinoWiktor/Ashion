@@ -1,5 +1,4 @@
 ﻿using Ashion.Core.Contracts;
-using Ashion.Core.Models.Accessory;
 using Ashion.Core.Models.Cosmetics;
 using Ashion.Core.Models.ProductsShared;
 using Ashion.Infrastructure.Common;

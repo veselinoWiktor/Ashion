@@ -1,5 +1,4 @@
 ﻿using Ashion.Core.Models.Shop;
-using Ashion.Infrastructure.Data.Entities;
 
 namespace Ashion.Web.Models.Shop
 {

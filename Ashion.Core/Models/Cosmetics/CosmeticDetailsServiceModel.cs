@@ -1,11 +1,5 @@
-﻿using Ashion.Core.Models.ProductsShared;
-using Ashion.Core.Models.Shop;
-using System;
-using System.Collections.Generic;
+﻿using Ashion.Core.Models.Shop;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ashion.Core.Models.Cosmetics
 {

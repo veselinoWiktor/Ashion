@@ -1,6 +1,5 @@
 ﻿using Ashion.Core.Models.Accessory;
 using Ashion.Core.Models.ProductsShared;
-using Ashion.Infrastructure.Data.Enums;
 
 namespace Ashion.Core.Contracts
 {

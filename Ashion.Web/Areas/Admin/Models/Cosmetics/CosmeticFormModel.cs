@@ -1,7 +1,7 @@
 ﻿using Ashion.Core.Models.ProductsShared;
 using System.ComponentModel.DataAnnotations;
-using static Ashion.Infrastructure.Data.DataConstants.Product;
 using static Ashion.Infrastructure.Data.DataConstants.Cosmetic;
+using static Ashion.Infrastructure.Data.DataConstants.Product;
 
 namespace Ashion.Web.Areas.Admin.Models.Cosmetics
 {
