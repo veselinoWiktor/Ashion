@@ -103,7 +103,7 @@ namespace Ashion.Tests.UnitTests
         [Test]
         public async Task Exists_ShouldReturnTrue_WithValidId()
         {
-            //Arrange: get valid rented house id
+            //Arrange: get valid accessory id
             var accessoryId = this.Accessory.Id;
 
             //Act: invoke the service method with valid ids

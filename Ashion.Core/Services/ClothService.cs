@@ -69,6 +69,12 @@ namespace Ashion.Core.Services
                 .AnyAsync(c => c.Id == categoryId);
         }
 
+        public async Task<bool> ColorExists(int colorId)
+        {
+            return await this.repository.AllReadonly<Color>()
+                .AnyAsync(c => c.Id == colorId);
+        }
+
         public async Task<ClothDetailsServiceModel> ClothDetailsById(int id)
         {
             return await this.repository.AllReadonly<Cloth>()
@@ -101,12 +107,6 @@ namespace Ashion.Core.Services
                .Where(c => c.Id == id)
                .ProjectTo<ClothServiceModel>(this.mapper.ConfigurationProvider)
                .FirstAsync();
-        }
-
-        public async Task<bool> ColorExists(int colorId)
-        {
-            return await this.repository.AllReadonly<Color>()
-                .AnyAsync(c => c.Id == colorId);
         }
 
         public async Task<int> Create(string name, string brand, decimal price, string packageId,

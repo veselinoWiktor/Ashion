@@ -92,7 +92,7 @@ namespace Ashion.Tests.UnitTests
             var cosmeticsInDbAfter = await this.repo.AllReadonly<Cosmetic>().CountAsync();
             Assert.That(cosmeticsInDbAfter, Is.EqualTo(cosmeticsInDbBefore + 1));
 
-            //Assert the new accessory is created with correct data
+            //Assert the new cloth is created with correct data
             var newCosmeticInDb = await this.repo.GetByIdAsync<Cosmetic>(newCosmeticId);
             Assert.That(newCosmeticInDb.Name, Is.EqualTo(newCosmetic.Name));
             Assert.That(newCosmeticInDb.Brand, Is.EqualTo(newCosmetic.Brand));
@@ -103,7 +103,7 @@ namespace Ashion.Tests.UnitTests
         [Test]
         public async Task Exists_ShouldReturnTrue_WithValidId()
         {
-            //Arrange: get valid rented house id
+            //Arrange: get valid cosmetic id
             var comseticId = this.Cosmetic.Id;
 
             //Act: invoke the service method with valid ids
