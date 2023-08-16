@@ -7,10 +7,14 @@ namespace Ashion.Web.Controllers
     public class AccessoriesController : Controller
     {
         private readonly IAccessoriesService accessories;
+        private readonly IReviewService reviews;
 
-        public AccessoriesController(IAccessoriesService accessories)
+        public AccessoriesController(
+            IAccessoriesService accessories,
+            IReviewService reviews)
         {
             this.accessories = accessories;
+            this.reviews = reviews;
         }
 
         public async Task<IActionResult> Details(int id, string information)
@@ -26,6 +30,8 @@ namespace Ashion.Web.Controllers
             {
                 return BadRequest();
             }
+
+                accessoryModel.Reviews = await this.reviews.GetAccessoryReviews(id);
 
             return View(accessoryModel);
         }

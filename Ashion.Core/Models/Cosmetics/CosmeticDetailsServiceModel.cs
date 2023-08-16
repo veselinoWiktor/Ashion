@@ -1,4 +1,5 @@
-﻿using Ashion.Core.Models.Shop;
+﻿using Ashion.Core.Models.Review;
+using Ashion.Core.Models.Shop;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ashion.Core.Models.Cosmetics
@@ -18,5 +19,8 @@ namespace Ashion.Core.Models.Cosmetics
 
         [Required]
         public IEnumerable<string> ImageUrls { get; set; } = null!;
+
+        public IEnumerable<ReviewServiceModel> Reviews { get; set; }
+            = new List<ReviewServiceModel>();
     }
 }

@@ -8,29 +8,28 @@
                     <li><a href="@Model.ImageUrl" class="image-popup"><span class="arrow_expand"></span></a></li>
                     @if (this.User.IsAdmin())
                     {
-                        <li><a asp-area="Admin" asp-controller="@(ViewData["Title"].ToString().Contains("Clothes") ? "Clothes" : ViewData["Title"])" asp-action="Edit" asp-route-Id="@Model.Id"><span class="icon_pencil-edit"></span></a></li>
-                        <li><a asp-area="Admin" asp-controller="@(ViewData["Title"].ToString().Contains("Clothes") ? "Clothes" : ViewData["Title"])" asp-action="Delete" asp-route-Id="@Model.Id"><span class="icon_minus-06"></span></a></li>
-                    }
-                    else
-                    {
-                        <li><a class="like-button" onclick="AddToLikedProducts('Cloth',@Model.Id)"><span class="icon_heart_alt"></span></a></li> <!--TODO-->
-                        <li>
-                            <a><button asp-controller="Likes" asp-action="Like" asp-route-id="@Model.Id" asp-route-type="Cloth" type="submit" class="btn btn-link"><span class="icon_bag_alt"></span></button></a> <!--TODO-->
+                        <li><a asp-area="Admin" 
+                            asp-controller="@(ViewData["Title"].ToString().Contains("Clothes") ? "Clothes" : ViewData["Title"])" 
+                            asp-action="Edit" 
+                            asp-route-Id="@Model.Id"><span class="icon_pencil-edit"></span></a>
+                        </li>
+                        <li><a asp-area="Admin" 
+                            asp-controller="@(ViewData["Title"].ToString().Contains("Clothes") ? "Clothes" : ViewData["Title"])" 
+                            asp-action="Delete" 
+                            asp-route-Id="@Model.Id"><span class="icon_minus-06"></span></a>
                         </li>
                     }
                 </ul>
             </form>
         </div>
         <div class="product__item__text">
-            <h6><a asp-area="" asp-controller="@(ViewData["Title"].ToString().Contains("Clothes") ? "Clothes" : ViewData["Title"])" asp-action="Details" asp-route-id="@Model.Id" asp-route-information="@Model.GetInformation()">@Model.Name</a></h6> <!--TODO-->
-            <h6><strong>@Model.Brand</strong></h6> <!--TODO-->
-            @*<div class="rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            </div>*@
+            <h6><a asp-area="" 
+                asp-controller="@(ViewData["Title"].ToString().Contains("Clothes") ? "Clothes" : ViewData["Title"])" 
+                asp-action="Details" 
+                asp-route-id="@Model.Id" 
+                asp-route-information="@Model.GetInformation()">@Model.Name</a>
+            </h6>
+            <h6><strong>@Model.Brand</strong></h6>
             <br />
             <div class="product__price">@Model.Price</div>
         </div>

@@ -4,6 +4,7 @@ using Ashion.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ashion.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AshionDbContext))]
-    partial class AshionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230816122928_AddCreationDateToReviews")]
+    partial class AddCreationDateToReviews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -958,7 +960,7 @@ namespace Ashion.Infrastructure.Data.Migrations
                         {
                             Id = "bcb4f072-ecca-43c9-ab26-c060c6f364e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "981383d2-737a-46b8-9f48-3dc8daeb8cdb",
+                            ConcurrencyStamp = "674d55fb-8d95-4334-b891-221f192d4306",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Great",
@@ -966,9 +968,9 @@ namespace Ashion.Infrastructure.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@mail.com",
                             NormalizedUserName = "admin@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP3RIZzFw6CpIqWrCIEKQIX/yn234QhZfK/eJlSPBG/37J9jHSW9/px+SEs++pVYNw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECP9fNbhr16nLGeMnjH1T7KwGXM9k5IhxqJkhf1TH8QFr+2p8oJjw2n6YUPfxauCZA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d219effd-a110-48e6-816d-ebc28561bcd3",
+                            SecurityStamp = "1091f9c6-3dfc-4159-a2e0-7f0bdcb864ee",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         });
@@ -1191,17 +1193,17 @@ namespace Ashion.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Ashion.Infrastructure.Data.Entities.Review", b =>
                 {
-                    b.HasOne("Ashion.Infrastructure.Data.Entities.Accessory", "Accessory")
+                    b.HasOne("Ashion.Infrastructure.Data.Entities.Accessory", null)
                         .WithMany("Reviews")
                         .HasForeignKey("AccessoryId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Ashion.Infrastructure.Data.Entities.Cloth", "Cloth")
+                    b.HasOne("Ashion.Infrastructure.Data.Entities.Cloth", null)
                         .WithMany("Reviews")
                         .HasForeignKey("ClothId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Ashion.Infrastructure.Data.Entities.Cosmetic", "Cosmetic")
+                    b.HasOne("Ashion.Infrastructure.Data.Entities.Cosmetic", null)
                         .WithMany("Reviews")
                         .HasForeignKey("CosmeticId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1211,12 +1213,6 @@ namespace Ashion.Infrastructure.Data.Migrations
                         .HasForeignKey("FromUserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Accessory");
-
-                    b.Navigation("Cloth");
-
-                    b.Navigation("Cosmetic");
 
                     b.Navigation("FromUser");
                 });

@@ -12,7 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IClothService, ClothService>();
             services.AddScoped<IAccessoriesService, AccessoriesService>();
             services.AddScoped<ICosmeticsService, CosmeticsService>();
-            services.AddScoped<ILikesService, LikesService>();
+            services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IRepository, Repository>();
 
             return services;

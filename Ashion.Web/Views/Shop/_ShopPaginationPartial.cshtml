@@ -31,30 +31,40 @@
         else if (Model.CurrentPage == 1)
         {
             <a class="disable-link">1</a>
-            <a asp-all-route-data="parms" asp-route-CurrentPage="2">2</a>
+            <a asp-all-route-data="parms" 
+                asp-route-CurrentPage="2">2</a>
             if (maxPage > 2)
             {
-                <a asp-all-route-data="parms" asp-route-CurrentPage="3">3</a>
+                <a asp-all-route-data="parms" 
+                    asp-route-CurrentPage="3">3</a>
             }
-            <a asp-all-route-data="parms" asp-route-CurrentPage="2"><i class="fa fa-angle-right"></i></a>
+            <a asp-all-route-data="parms" 
+                asp-route-CurrentPage="2"><i class="fa fa-angle-right"></i></a>
         }
         else if (Model.CurrentPage == maxPage)
         {
-            <a asp-all-route-data="parms" asp-route-CurrentPage="@(maxPage-1)"><i class="fa fa-angle-left"></i></a>
+            <a asp-all-route-data="parms" 
+                asp-route-CurrentPage="@(maxPage-1)"><i class="fa fa-angle-left"></i></a>
             if ((maxPage - 2) != 0)
             {
-                <a asp-all-route-data="parms" asp-route-CurrentPage="@(maxPage-2)">@(maxPage - 2)</a>
+                <a asp-all-route-data="parms" 
+                    asp-route-CurrentPage="@(maxPage-2)">@(maxPage - 2)</a>
             }
-            <a asp-all-route-data="parms" asp-route-CurrentPage="@(maxPage-1)">@(maxPage - 1)</a>
+            <a asp-all-route-data="parms" 
+                asp-route-CurrentPage="@(maxPage-1)">@(maxPage - 1)</a>
             <a class="disable-link">@maxPage</a>
         }
         else
         {
-            <a asp-all-route-data="parms" asp-route-CurrentPage="@(previousPage)"><i class="fa fa-angle-left"></i></a>
-            <a asp-all-route-data="parms" asp-route-CurrentPage="@(previousPage)">@previousPage</a>
+            <a asp-all-route-data="parms"
+                asp-route-CurrentPage="@(previousPage)"><i class="fa fa-angle-left"></i></a>
+            <a asp-all-route-data="parms"
+                asp-route-CurrentPage="@(previousPage)">@previousPage</a>
             <a class="disable-link">@Model.CurrentPage</a>
-            <a asp-all-route-data="parms" asp-route-CurrentPage="@(Model.CurrentPage + 1)">@(Model.CurrentPage + 1)</a>
-            <a asp-all-route-data="parms" asp-route-CurrentPage="@(Model.CurrentPage + 1)"><i class="fa fa-angle-right"></i></a>
+            <a asp-all-route-data="parms"
+                asp-route-CurrentPage="@(Model.CurrentPage + 1)">@(Model.CurrentPage + 1)</a>
+            <a asp-all-route-data="parms"
+                asp-route-CurrentPage="@(Model.CurrentPage + 1)"><i class="fa fa-angle-right"></i></a>
         }
     </div>
 </div>

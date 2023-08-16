@@ -28,7 +28,7 @@ namespace Ashion.Infrastructure.Data.Configurations
 
             builder
                 .HasMany(p => p.Reviews)
-                .WithOne()
+                .WithOne(r => r.Cloth)
                 .OnDelete(DeleteBehavior.Restrict);
 
             if (seedDb)

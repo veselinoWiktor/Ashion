@@ -7,10 +7,14 @@ namespace Ashion.Web.Controllers
     public class CosmeticsController : Controller
     {
         private readonly ICosmeticsService cosmetics;
+        private readonly IReviewService reviews;
 
-        public CosmeticsController(ICosmeticsService cosmetics)
+        public CosmeticsController(
+            ICosmeticsService cosmetics,
+            IReviewService reviews)
         {
             this.cosmetics = cosmetics;
+            this.reviews = reviews;
         }
 
         public async Task<IActionResult> Details(int id, string information)
@@ -26,6 +30,8 @@ namespace Ashion.Web.Controllers
             {
                 return BadRequest();
             }
+
+            cosmeticModel.Reviews = await this.reviews.GetCosmeticReviews(id);
 
             return View(cosmeticModel);
         }

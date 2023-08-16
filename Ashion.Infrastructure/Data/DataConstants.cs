@@ -63,7 +63,7 @@
             public const int MinTitleLength = 5;
 
             public const int MaxContentLength = 750;
-            public const int MinContentLength = 80;
+            public const int MinContentLength = 15;
         }
 
         public static class Size

@@ -1,4 +1,5 @@
-﻿using Ashion.Core.Models.Shop;
+﻿using Ashion.Core.Models.Review;
+using Ashion.Core.Models.Shop;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ashion.Core.Models.Clothes
@@ -25,6 +26,8 @@ namespace Ashion.Core.Models.Clothes
         [Required]
         public IEnumerable<ClothSizeServiceModel> Sizes { get; set; } = null!;
 
+        public IEnumerable<ReviewServiceModel> Reviews { get; set; }
+            = new List<ReviewServiceModel>();
 
     }
 }

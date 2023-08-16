@@ -13,7 +13,8 @@
                             <div class="card-heading active">
                                 <a data-toggle="collapse" data-target="#collapseOne">Women</a>
                             </div>
-                            <div id="collapseOne" class="collapse @(ViewData["Title"] == "Women's Clothes" ? "show" : string.Empty)" data-parent="#accordionExample">
+                            <div id="collapseOne" class="collapse @(ViewData["Title"] == "Women's Clothes" ? "show" : string.Empty)" 
+                            data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a asp-controller="Shop" asp-action="Womens" asp-route-Category="T-Shirts">T-Shirts</a></li>
@@ -29,7 +30,8 @@
                             <div class="card-heading">
                                 <a data-toggle="collapse" data-target="#collapseTwo">Men</a>
                             </div>
-                            <div id="collapseTwo" class="collapse @(ViewData["Title"] == "Men's Clothes" ? "show" : string.Empty)" data-parent="#accordionExample">
+                            <div id="collapseTwo" class="collapse @(ViewData["Title"] == "Men's Clothes" ? "show" : string.Empty)" 
+                            data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a asp-controller="Shop" asp-action="Mens" asp-route-Category="T-Shirts">T-Shirts</a></li>
@@ -46,7 +48,8 @@
                             <div class="card-heading">
                                 <a data-toggle="collapse" data-target="#collapseThree">Kids</a>
                             </div>
-                            <div id="collapseThree" class="collapse @(ViewData["Title"] == "Kid's Clothes" ? "show" : string.Empty)" data-parent="#accordionExample">
+                            <div id="collapseThree" class="collapse @(ViewData["Title"] == "Kid's Clothes" ? "show" : string.Empty)" 
+                            data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a asp-controller="Shop" asp-action="Kids" asp-route-Category="T-Shirts">T-Shirts</a></li>
@@ -62,7 +65,8 @@
                             <div class="card-heading">
                                 <a data-toggle="collapse" data-target="#collapseFour">Accessories</a>
                             </div>
-                            <div id="collapseFour" class="collapse @(ViewData["Title"] == "Accessories" ? "show" : string.Empty)" data-parent="#accordionExample">
+                            <div id="collapseFour" class="collapse @(ViewData["Title"] == "Accessories" ? "show" : string.Empty)" 
+                            data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a asp-area="" asp-controller="Shop" asp-action="Accessories" asp-route-Category="BagsandBackpacks">Bags and Backpacks</a></li>
@@ -76,7 +80,8 @@
                             <div class="card-heading">
                                 <a data-toggle="collapse" data-target="#collapseFive">Cosmetic</a>
                             </div>
-                            <div id="collapseFive" class="collapse @(ViewData["Title"] == "Cosmetics" ? "show" : string.Empty)" data-parent="#accordionExample">
+                            <div id="collapseFive" class="collapse @(ViewData["Title"] == "Cosmetics" ? "show" : string.Empty)" 
+                            data-parent="#accordionExample">
                                 <div class="card-body">
                                     <ul>
                                         <li><a asp-area="" asp-controller="Shop" asp-action="Cosmetics" asp-route-Category="Antiagecosmetic">Antiage cosmetic</a></li>
@@ -100,12 +105,12 @@
                         <div class="price-input">
                             <p>Price:</p>
                             <input type="text" id="amount">
-                            @*<input type="text" id="minamount">
-                            <input type="text" id="maxamount">*@
                         </div>
                     </div>
                 </div>
-                <a asp-route-Category="@Model.Category" asp-route-MinPriceRange="@Model.MinPriceRange" asp-route-MaxPriceRange="@Model.MaxPriceRange" id="form_submit">Filter</a>
+                <a asp-route-Category="@Model.Category"
+                    asp-route-MinPriceRange="@Model.MinPriceRange" 
+                    asp-route-MaxPriceRange="@Model.MaxPriceRange" id="form_submit">Filter</a>
             </div>
             @if (Model.AllSizes != null)
             {
