@@ -2,6 +2,7 @@
 using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
 using Ashion.Tests.Mocks;
+using AutoMapper;
 using NUnit.Framework.Internal.Execution;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace Ashion.Tests.UnitTests
     public class UnitTestsBase
     {
         protected IRepository repo;
+        protected IMapper mapper;
 
         [OneTimeSetUp]
         public void SetUpBase()
         {
             this.repo = new Repository(DatabaseMock.Instance);
+            this.mapper = MapperMock.Instance;
             this.SeedDataBase();
         }
 

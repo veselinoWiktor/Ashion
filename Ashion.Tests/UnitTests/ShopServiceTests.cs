@@ -38,7 +38,7 @@ namespace Ashion.Tests.UnitTests
                 .ToListAsync();
             Assert.That(result.TotalProductsCount, Is.EqualTo(accessoriesInDb.Count));
 
-            //Assert the returned house data is correct
+            //Assert the returned data is correct
             var resultAccessory = result.Products.FirstOrDefault();
             Assert.That(resultAccessory, Is.Not.Null);
 
@@ -67,7 +67,7 @@ namespace Ashion.Tests.UnitTests
                 .ToListAsync();
             Assert.That(result.TotalProductsCount, Is.EqualTo(cosmeticsInDb.Count));
 
-            //Assert the returned house data is correct
+            //Assert the returned data is correct
             var resultCosmetic = result.Products.FirstOrDefault();
             Assert.That(resultCosmetic, Is.Not.Null);
 
@@ -96,7 +96,7 @@ namespace Ashion.Tests.UnitTests
                 .ToListAsync();
             Assert.That(result.TotalProductsCount, Is.EqualTo(clothsInDb.Count));
 
-            //Assert the returned house data is correct
+            //Assert the returned data is correct
             var resultCloth = result.Products.FirstOrDefault();
             Assert.That(resultCloth, Is.Not.Null);
 
@@ -125,7 +125,7 @@ namespace Ashion.Tests.UnitTests
                 .ToListAsync();
             Assert.That(result.TotalProductsCount, Is.EqualTo(clothsInDb.Count));
 
-            //Assert the returned house data is correct
+            //Assert the returned data is correct
             var resultCloth = result.Products.FirstOrDefault();
             Assert.That(resultCloth, Is.Not.Null);
 
@@ -154,7 +154,7 @@ namespace Ashion.Tests.UnitTests
                 .ToListAsync();
             Assert.That(result.TotalProductsCount, Is.EqualTo(clothsInDb.Count));
 
-            //Assert the returned house data is correct
+            //Assert the returned data is correct
             var resultCloth = result.Products.FirstOrDefault();
             Assert.That(resultCloth, Is.Not.Null);
 
@@ -209,7 +209,7 @@ namespace Ashion.Tests.UnitTests
                 .ToListAsync();
             Assert.That(result.Count(), Is.EqualTo(sizesInDb.Count));
 
-            //Assert the returned house data is correct
+            //Assert the returned data is correct
             var resultSize = result.FirstOrDefault();
             Assert.That(resultSize, Is.Not.Null);
 
@@ -228,7 +228,7 @@ namespace Ashion.Tests.UnitTests
                 .ToListAsync();
             Assert.That(result.Count(), Is.EqualTo(colorsInDb.Count));
 
-            //Assert the returned house data is correct
+            //Assert the returned data is correct
             var resultColor = result.FirstOrDefault();
             Assert.That(resultColor, Is.Not.Null);
 
