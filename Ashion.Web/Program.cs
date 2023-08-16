@@ -1,5 +1,7 @@
+using Ashion.Core.Contracts;
 using Ashion.Infrastructure.Data;
 using Ashion.Infrastructure.Data.Entities;
+using Ashion.Web.Controllers;
 using Ashion.Web.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +33,13 @@ builder.Services.AddControllersWithViews(options =>
 
 builder.Services.AddSession();
 builder.Services.AddApplicationServices();
+
+builder.Services.AddAutoMapper(
+    typeof(IAccessoriesService).Assembly,
+    typeof(IClothService).Assembly,
+    typeof(ICosmeticsService).Assembly,
+    typeof(IShopService).Assembly,
+    typeof(HomeController).Assembly);
 
 var app = builder.Build();
 

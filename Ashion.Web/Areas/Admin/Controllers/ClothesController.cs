@@ -1,6 +1,7 @@
 ﻿using Ashion.Core.Contracts;
 using Ashion.Web.Areas.Admin.Models.Clothes;
 using Ashion.Web.Extensions;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashion.Web.Areas.Admin.Controllers
@@ -8,10 +9,14 @@ namespace Ashion.Web.Areas.Admin.Controllers
     public class ClothesController : AdminController
     {
         private readonly IClothService clothes;
+        private readonly IMapper mapper;
 
-        public ClothesController(IClothService clothes)
+        public ClothesController(
+            IClothService clothes,
+            IMapper mapper)
         {
             this.clothes = clothes;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -72,25 +77,10 @@ namespace Ashion.Web.Areas.Admin.Controllers
 
             var cloth = await this.clothes.ClothDetailsForEditById(id);
 
-            var clothModel = new ClothFormModel()
-            {
-                PackageId = cloth.PackageId,
-                Name = cloth.Name,
-                Brand = cloth.Brand,
-                ShortContent = cloth.ShortContent,
-                Description = cloth.Description,
-                Price = cloth.Price,
-                Quantity = cloth.Quantity,
-                CategoryId = cloth.CategoryId,
-                ColorId = cloth.ColorId,
-                ForKids = cloth.ForKids,
-                Gender = cloth.Gender,
-                ImageUrls = cloth.ImageUrls,
-                SizesIds = cloth.SizesIds,
-                Categories = await this.clothes.AllCategories(),
-                Colors = await this.clothes.AllColors(),
-                Sizes = await this.clothes.AllSizes(),
-            };
+            var clothModel = this.mapper.Map<ClothFormModel>(cloth);
+            clothModel.Categories = await this.clothes.AllCategories();
+            clothModel.Colors = await this.clothes.AllColors();
+            clothModel.Sizes = await this.clothes.AllSizes();
 
             return View(clothModel);
         }

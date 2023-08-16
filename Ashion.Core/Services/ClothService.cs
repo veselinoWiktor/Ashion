@@ -5,6 +5,8 @@ using Ashion.Core.Models.Shop;
 using Ashion.Infrastructure.Common;
 using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ashion.Core.Services
@@ -12,43 +14,35 @@ namespace Ashion.Core.Services
     public class ClothService : IClothService
     {
         private readonly IRepository repository;
+        private readonly IMapper mapper;
 
-        public ClothService(IRepository repository)
+        public ClothService(
+            IRepository repository,
+            IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         public async Task<IEnumerable<ProductCategoryServiceModel>> AllCategories()
         {
             return await this.repository.AllReadonly<Category>()
                 .Where(c => c.ProductType == ProductType.Cloth)
-                .Select(c => new ProductCategoryServiceModel()
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                })
+                .ProjectTo<ProductCategoryServiceModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<ClothColorServiceModel>> AllColors()
         {
             return await this.repository.AllReadonly<Color>()
-                .Select(c => new ClothColorServiceModel()
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                })
+                .ProjectTo<ClothColorServiceModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
         public async Task<IEnumerable<ClothSizeServiceModel>> AllSizes()
         {
             return await this.repository.AllReadonly<Size>()
-                .Select(c => new ClothSizeServiceModel()
-                {
-                    Id = c.Id,
-                    SizeNumber = c.SizeNumber
-                })
+                .ProjectTo<ClothSizeServiceModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
@@ -85,9 +79,9 @@ namespace Ashion.Core.Services
                     Brand = c.Brand,
                     ShortContent = c.ShortContent,
                     Description = c.Description,
-                    FashionType = c.ForKids ? "Kids" : c.Gender.ToString(),
                     Price = c.Price,
                     InStock = c.InStock,
+                    FashionType = c.ForKids ? "Kids" : c.Gender.ToString(),
                     MainColor = new ClothColorServiceModel() { Id = c.ColorId, Name = c.Color.Name },
                     ImageUrls = c.Images
                         .Select(i => i.Url)
@@ -99,7 +93,7 @@ namespace Ashion.Core.Services
                         .AllReadonly<Cloth>()
                         .Where(cl => cl.PackageId == c.PackageId && cl.ColorId != c.ColorId)
                         .Select(cl => new ClothColorDetailsServiceModel() { Id = cl.ColorId, Name = cl.Color.Name, ClothId = cl.Id })
-                        .ToList()
+                        .ToList(),
                 })
                 .FirstAsync();
         }
@@ -108,22 +102,7 @@ namespace Ashion.Core.Services
         {
             return await this.repository.AllReadonly<Cloth>()
                .Where(c => c.Id == id)
-               .Select(c => new ClothServiceModel()
-               {
-                   Name = c.Name,
-                   Brand = c.Brand,
-                   ShortContent = c.ShortContent,
-                   Description = c.Description,
-                   Price = c.Price,
-                   Quantity = c.Quantity,
-                   CategoryId = c.CategoryId,
-                   ColorId = c.ColorId,
-                   ForKids = c.ForKids,
-                   Gender = c.Gender,
-                   ImageUrls = c.Images.Select(i => i.Url).ToList(),
-                   PackageId = c.PackageId,
-                   SizesIds = c.Sizes.Select(s => s.SizeId).ToList(),
-               })
+               .ProjectTo<ClothServiceModel>(this.mapper.ConfigurationProvider)
                .FirstAsync();
         }
 
@@ -299,12 +278,7 @@ namespace Ashion.Core.Services
         {
             return await this.repository.AllReadonly<Cloth>()
                 .Where(c => c.Id == id)
-                .Select(c => new ShopProductServiceModel()
-                {
-                    Name = c.Name,
-                    Brand = c.Brand,
-                    Description = c.Description
-                })
+                .ProjectTo<ShopProductServiceModel>(this.mapper.ConfigurationProvider)
                 .FirstAsync();
         }
     }

@@ -3,6 +3,8 @@ using Ashion.Core.Models.Shop;
 using Ashion.Infrastructure.Common;
 using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
@@ -11,9 +13,10 @@ namespace Ashion.Core.Services
     public class ShopService : IShopService
     {
         private readonly IRepository repository;
-
         
-        public ShopService(IRepository repository)
+        public ShopService(
+            IRepository repository,
+            IMapper mapper)
         {
             this.repository = repository;
         }
@@ -43,9 +46,9 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
-                    Description = c.Description,
-                    ImageUrl = c.Images.First().Url,
                     Price = c.Price,
+                    Description = c.Description,
+                    ImageUrl = c.Images.Select(i => i.Url).First()
                 })
                 .ToListAsync();
 
@@ -85,9 +88,9 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
-                    Description = c.Description,
-                    ImageUrl = c.Images.First().Url,
                     Price = c.Price,
+                    Description = c.Description,
+                    ImageUrl = c.Images.Select(i => i.Url).First()
                 })
                 .ToListAsync();
 
@@ -144,9 +147,9 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
-                    Description = c.Description,
-                    ImageUrl = c.Images.First().Url,
                     Price = c.Price,
+                    Description = c.Description,
+                    ImageUrl = c.Images.Select(i => i.Url).First()
                 })
                 .ToListAsync();
 
@@ -204,9 +207,9 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
-                    Description = c.Description,
-                    ImageUrl = c.Images.First().Url,
                     Price = c.Price,
+                    Description = c.Description,
+                    ImageUrl = c.Images.Select(i => i.Url).First()
                 })
                 .ToListAsync();
 
@@ -264,9 +267,9 @@ namespace Ashion.Core.Services
                     Id = c.Id,
                     Name = c.Name,
                     Brand = c.Brand,
-                    Description = c.Description,
-                    ImageUrl = c.Images.First().Url,
                     Price = c.Price,
+                    Description = c.Description,
+                    ImageUrl = c.Images.Select(i => i.Url).First()
                 })
                 .ToListAsync();
 

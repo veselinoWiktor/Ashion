@@ -4,6 +4,8 @@ using Ashion.Core.Models.ProductsShared;
 using Ashion.Infrastructure.Common;
 using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ashion.Core.Services
@@ -11,21 +13,21 @@ namespace Ashion.Core.Services
     public class CosmeticsService : ICosmeticsService
     {
         private readonly IRepository repository;
+        private readonly IMapper mapper;
 
-        public CosmeticsService(IRepository repository)
+        public CosmeticsService(
+            IRepository repository,
+            IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         public async Task<IEnumerable<ProductCategoryServiceModel>> AllCategories()
         {
             return await this.repository.AllReadonly<Category>()
                 .Where(c => c.ProductType == ProductType.Cosmetics)
-                .Select(c => new ProductCategoryServiceModel()
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                })
+                .ProjectTo<ProductCategoryServiceModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
@@ -80,21 +82,7 @@ namespace Ashion.Core.Services
         {
             return await this.repository.AllReadonly<Cosmetic>()
                 .Where(a => a.Id == id)
-                .Select(a => new CosmeticDetailsServiceModel()
-                {
-                    Id = a.Id,
-                    Name = a.Name,
-                    Brand = a.Brand,
-                    Quantity = a.Quantity,
-                    ShortContent = a.ShortContent,
-                    Description = a.Description,
-                    Ingredients = a.Ingredients,
-                    Price = a.Price,
-                    InStock = a.InStock,
-                    ImageUrls = a.Images
-                        .Select(i => i.Url)
-                        .ToList(),
-                })
+                .ProjectTo<CosmeticDetailsServiceModel>(this.mapper.ConfigurationProvider)
                 .FirstAsync();
         }
 

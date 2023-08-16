@@ -1,6 +1,7 @@
 ﻿using Ashion.Core.Contracts;
 using Ashion.Web.Areas.Admin.Models.Accessories;
 using Ashion.Web.Extensions;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashion.Web.Areas.Admin.Controllers
@@ -8,10 +9,14 @@ namespace Ashion.Web.Areas.Admin.Controllers
     public class AccessoriesController : AdminController
     {
         private readonly IAccessoriesService accessories;
+        private readonly IMapper mapper;
 
-        public AccessoriesController(IAccessoriesService accessories)
+        public AccessoriesController(
+            IAccessoriesService accessories,
+            IMapper mapper)
         {
             this.accessories = accessories;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -57,18 +62,9 @@ namespace Ashion.Web.Areas.Admin.Controllers
 
             var accessoryCategoryId = await this.accessories.GetAccessoryCategoryId(id);
 
-            var accessoryModel = new AccessoryFormModel()
-            {
-                Name = accessory.Name,
-                Brand = accessory.Brand,
-                ShortContent = accessory.ShortContent,
-                Description = accessory.Description,
-                Price = accessory.Price,
-                Quantity = accessory.Quantity,
-                ImageUrls = accessory.ImageUrls,
-                CategoryId = accessoryCategoryId,
-                Categories = await this.accessories.AllCategories(),
-            };
+            var accessoryModel = this.mapper.Map<AccessoryFormModel>(accessory);
+            accessoryModel.CategoryId = accessoryCategoryId;
+            accessoryModel.Categories = await this.accessories.AllCategories();
 
             return View(accessoryModel);
         }
@@ -110,13 +106,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
 
             var accessory = await this.accessories.AccessoryDetailsById(id);
 
-            var model = new AccessoryDetailsViewModel()
-            {
-                Id = accessory.Id,
-                Name = accessory.Name,
-                Brand = accessory.Brand,
-                ImageUrl = accessory.ImageUrls.First(),
-            };
+            var model = this.mapper.Map<AccessoryDetailsViewModel>(accessory);
 
             return View(model);
         }

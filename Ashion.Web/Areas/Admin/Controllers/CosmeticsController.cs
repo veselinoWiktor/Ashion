@@ -1,6 +1,7 @@
 ﻿using Ashion.Core.Contracts;
 using Ashion.Web.Areas.Admin.Models.Cosmetics;
 using Ashion.Web.Extensions;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ashion.Web.Areas.Admin.Controllers
@@ -8,10 +9,15 @@ namespace Ashion.Web.Areas.Admin.Controllers
     public class CosmeticsController : AdminController
     {
         private readonly ICosmeticsService cosmetics;
+        private readonly IMapper mapper;
 
-        public CosmeticsController(ICosmeticsService cosmetics)
+
+        public CosmeticsController(
+            ICosmeticsService cosmetics,
+            IMapper mapper)
         {
             this.cosmetics = cosmetics;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -57,19 +63,9 @@ namespace Ashion.Web.Areas.Admin.Controllers
 
             var cosmeticCategoryId = await this.cosmetics.GetCosmeticCategoryId(id);
 
-            var comseticModel = new CosmeticFormModel()
-            {
-                Name = cosmetic.Name,
-                Brand = cosmetic.Brand,
-                ShortContent = cosmetic.ShortContent,
-                Description = cosmetic.Description,
-                Ingredients = cosmetic.Ingredients,
-                Price = cosmetic.Price,
-                Quantity = cosmetic.Quantity,
-                ImageUrls = cosmetic.ImageUrls,
-                CategoryId = cosmeticCategoryId,
-                Categories = await this.cosmetics.AllCategories(),
-            };
+            var comseticModel = this.mapper.Map<CosmeticFormModel>(cosmetic);
+            comseticModel.CategoryId = cosmeticCategoryId;
+            comseticModel.Categories = await this.cosmetics.AllCategories();
 
             return View(comseticModel);
         }
@@ -111,13 +107,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
 
             var cosmetic = await this.cosmetics.CosmeticDetailsById(id);
 
-            var model = new CosmeticDetailsViewModel()
-            {
-                Id = cosmetic.Id,
-                Name = cosmetic.Name,
-                Brand = cosmetic.Brand,
-                ImageUrl = cosmetic.ImageUrls.First(),
-            };
+            var model = mapper.Map<CosmeticDetailsViewModel>(cosmetic);
 
             return View(model);
         }

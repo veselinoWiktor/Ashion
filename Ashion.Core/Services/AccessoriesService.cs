@@ -4,6 +4,8 @@ using Ashion.Core.Models.ProductsShared;
 using Ashion.Infrastructure.Common;
 using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ashion.Core.Services
@@ -11,21 +13,21 @@ namespace Ashion.Core.Services
     public class AccessoriesService : IAccessoriesService
     {
         private readonly IRepository repository;
+        private readonly IMapper mapper;
 
-        public AccessoriesService(IRepository repository)
+        public AccessoriesService(
+            IRepository repository,
+            IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         public async Task<IEnumerable<ProductCategoryServiceModel>> AllCategories()
         {
             return await this.repository.AllReadonly<Category>()
                 .Where(c => c.ProductType == ProductType.Accessory)
-                .Select(c => new ProductCategoryServiceModel()
-                {
-                    Id = c.Id,
-                    Name = c.Name
-                })
+                .ProjectTo<ProductCategoryServiceModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }
 
@@ -79,20 +81,7 @@ namespace Ashion.Core.Services
         {
             return await this.repository.AllReadonly<Accessory>()
                 .Where(a => a.Id == id)
-                .Select(a => new AccessoryDetailsServiceModel()
-                {
-                    Id = a.Id,
-                    Name = a.Name,
-                    Brand = a.Brand,
-                    Quantity = a.Quantity,
-                    ShortContent = a.ShortContent,
-                    Description = a.Description,
-                    Price = a.Price,
-                    InStock = a.InStock,
-                    ImageUrls = a.Images
-                        .Select(i => i.Url)
-                        .ToList(),
-                })
+                .ProjectTo<AccessoryDetailsServiceModel>(this.mapper.ConfigurationProvider)
                 .FirstAsync();
         }
 
