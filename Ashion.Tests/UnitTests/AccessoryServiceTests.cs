@@ -114,9 +114,9 @@ namespace Ashion.Tests.UnitTests
         }
 
         [Test]
-        public async Task HouseDetailsById_ShouldReturnCorrectHouseData()
+        public async Task AccessoryDetailsById_ShouldReturnCorrectAccessoryData()
         {
-            //Arrange: get a valid rented house id
+            //Arrange: get a valid accessory id
             var accessoryId = this.Accessory.Id;
 
             //Act: invoke the service method with the valid id
@@ -194,7 +194,7 @@ namespace Ashion.Tests.UnitTests
         }
 
         [Test]
-        public async Task Delete_ShouldDeleteHouseSuccessfully()
+        public async Task Delete_ShouldDeleteAccessorySuccessfully()
         {
             //Arrange: add a new accessory to the database
             var accessory = new Accessory()
@@ -232,7 +232,7 @@ namespace Ashion.Tests.UnitTests
             var accessoriesCountAfter = await this.repo.AllReadonly<Accessory>().CountAsync();
             Assert.That(accessoriesCountAfter, Is.EqualTo(accessoriesCountBefore - 1));
 
-            //Assert the house data is not present in the db
+            //Assert the accessory data is not present in the db
             var accessoryInDb = await this.repo.GetByIdAsync<Accessory>(accessory.Id);
             Assert.That(accessoryInDb, Is.Null);
         }
