@@ -37,6 +37,6 @@ namespace Ashion.Core.Contracts
 
         Task<string> Delete(int clothId);
 
-        Task<ShopProductServiceModel> GetClothById(int id);
+        Task<string> GetInformationByClothId(int id);
     }
 }

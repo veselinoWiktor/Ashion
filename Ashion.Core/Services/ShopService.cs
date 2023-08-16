@@ -15,8 +15,7 @@ namespace Ashion.Core.Services
         private readonly IRepository repository;
         
         public ShopService(
-            IRepository repository,
-            IMapper mapper)
+            IRepository repository)
         {
             this.repository = repository;
         }

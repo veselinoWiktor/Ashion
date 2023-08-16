@@ -80,10 +80,10 @@
                                 <li><a asp-area="Admin" asp-controller="Clothes" asp-action="Edit" asp-route-Id="@Model.Id"><span class="icon_pencil-edit"></span></a></li>
                                 <li><a asp-area="Admin" asp-controller="Clothes" asp-action="Delete" asp-route-Id="@Model.Id"><span class="icon_minus-06"></span></a></li>
                             }
-                            else
+                            @*else
                             {
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                            }
+                            }*@
                         </ul>
                     </div>
                     <div class="product__details__widget">
@@ -101,9 +101,9 @@
                             <li>
                                 <span>Available color:</span>
                                 <div class="color__checkbox">
-                                    <label for="@Model.MainColor.Name">
-                                        <input type="radio" name="color__radio" id="@Model.MainColor.Name" checked>
-                                        <span class="checkmark @Model.MainColor.Name.ToLower()"></span>
+                                    <label for="@Model.MainColor">
+                                        <input type="radio" name="color__radio" id="@Model.MainColor" checked>
+                                        <span class="checkmark @Model.MainColor"></span>
                                     </label>
                                     @if (Model.OtherColors.Count() > 0)
                                     {
@@ -111,7 +111,7 @@
                                         {
                                             <label for="@color.Name">
                                                 <input type="radio" name="color__radio" id="@color.Name">
-                                                <a asp-area="" asp-controller="Clothes" asp-action="Details" asp-route-id="@color.ClothId" asp-route-information="@((await clothes.GetClothById(color.ClothId)).GetInformation())"><span class="checkmark @color.Name.ToLower()"></span></a>
+                                                <a asp-area="" asp-controller="Clothes" asp-action="Details" asp-route-id="@color.ClothId" asp-route-information="@((await clothes.GetInformationByClothId(color.ClothId)))"><span class="checkmark @color.Name.ToLower()"></span></a>
                                             </label>
                                         }
                                     }
@@ -122,9 +122,9 @@
                                 <div class="size__btn">
                                     @foreach (var size in Model.Sizes)
                                     {
-                                        <label for="@size.SizeNumber">
-                                            <input type="radio" id="@size.SizeNumber">
-                                            @size.SizeNumber
+                                        <label for="@size">
+                                            <input type="radio" id="@size">
+                                            @size
                                         </label>
                                     }
                                 </div>
@@ -198,4 +198,3 @@
         </div>
     </div>
 </section>
-<!-- Product Details Section End -->

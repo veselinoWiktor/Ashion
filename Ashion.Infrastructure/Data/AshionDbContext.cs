@@ -12,6 +12,14 @@ namespace Ashion.Infrastructure.Data
         public AshionDbContext(DbContextOptions<AshionDbContext> options, bool seedDb = true)
             : base(options)
         {
+            if (this.Database.IsRelational())
+            {
+                this.Database.Migrate();
+            }
+            else
+            {
+                this.Database.EnsureCreated();
+            }
             this.seedDb = seedDb;
         }
 

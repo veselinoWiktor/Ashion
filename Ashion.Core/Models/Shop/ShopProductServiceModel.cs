@@ -12,7 +12,7 @@ namespace Ashion.Core.Models.Shop
 
         public string Description { get; set; } = null!;
 
-        public string ImageUrl { get; init; } = null!;
+        public string ImageUrl { get; init; }
 
         public decimal Price { get; init; }
     }

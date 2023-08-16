@@ -5,6 +5,7 @@ using Ashion.Core.Models.Shop;
 using Ashion.Infrastructure.Common;
 using Ashion.Infrastructure.Data.Entities;
 using Ashion.Infrastructure.Data.Enums;
+using Ashion.Web.Extensions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
@@ -82,17 +83,13 @@ namespace Ashion.Core.Services
                     Price = c.Price,
                     InStock = c.InStock,
                     FashionType = c.ForKids ? "Kids" : c.Gender.ToString(),
-                    MainColor = new ClothColorServiceModel() { Id = c.ColorId, Name = c.Color.Name },
-                    ImageUrls = c.Images
-                        .Select(i => i.Url)
-                        .ToList(),
-                    Sizes = c.Sizes
-                        .Select(s => new ClothSizeServiceModel() { Id = s.Size.Id, SizeNumber = s.Size.SizeNumber })
-                        .ToList(),
+                    MainColor = c.Color.Name,
+                    Sizes = c.Sizes.Select(s => s.Size.SizeNumber),
+                    ImageUrls = c.Images.Select(i => i.Url),
                     OtherColors = this.repository
                         .AllReadonly<Cloth>()
                         .Where(cl => cl.PackageId == c.PackageId && cl.ColorId != c.ColorId)
-                        .Select(cl => new ClothColorDetailsServiceModel() { Id = cl.ColorId, Name = cl.Color.Name, ClothId = cl.Id })
+                        .Select(cl => new ClothColorDetailsServiceModel() { Name = cl.Color.Name, ClothId = cl.Id })
                         .ToList(),
                 })
                 .FirstAsync();
@@ -198,7 +195,7 @@ namespace Ashion.Core.Services
 
             foreach (var imageId in imageIds)
             {
-                await this.repository.DeleteAsync<Image>(imageId); 
+                await this.repository.DeleteAsync<Image>(imageId);
             }
 
             var currentSizeIds = cloth.Sizes.Select(cs => cs.SizeId).ToList();
@@ -245,7 +242,7 @@ namespace Ashion.Core.Services
                 .Include(c => c.Sizes)
                 .FirstAsync();
 
-            
+
 
             foreach (var image in cloth.Images)
             {
@@ -264,7 +261,7 @@ namespace Ashion.Core.Services
             {
                 return "Kids";
             }
-            else if(cloth.Gender == Gender.Male)
+            else if (cloth.Gender == Gender.Male)
             {
                 return "Mens";
             }
@@ -274,12 +271,14 @@ namespace Ashion.Core.Services
             }
         }
 
-        public async Task<ShopProductServiceModel> GetClothById(int id)
+        public async Task<string> GetInformationByClothId(int id)
         {
-            return await this.repository.AllReadonly<Cloth>()
+            var cloth = await this.repository.AllReadonly<Cloth>()
                 .Where(c => c.Id == id)
                 .ProjectTo<ShopProductServiceModel>(this.mapper.ConfigurationProvider)
                 .FirstAsync();
+
+            return cloth.GetInformation();
         }
     }
 }

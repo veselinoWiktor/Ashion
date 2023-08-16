@@ -4,6 +4,7 @@ using Ashion.Core.Models.Cosmetics;
 using Ashion.Core.Models.ProductsShared;
 using Ashion.Core.Models.Review;
 using Ashion.Core.Models.Shop;
+using Ashion.Infrastructure.Common;
 using Ashion.Infrastructure.Data.Entities;
 using AutoMapper;
 using System;
@@ -49,7 +50,10 @@ namespace Ashion.Core.Extensions
                 .ForMember(c => c.ImageUrls, cfg => cfg.MapFrom(c => c.Images.Select(i => i.Url).ToList()))
                 .ForMember(c => c.SizesIds, cfg => cfg.MapFrom(c => c.Sizes.Select(s => s.SizeId).ToList()));
 
-            this.CreateMap<Cloth, ShopProductServiceModel>();
+            this.CreateMap<Cloth, ClothServiceModel>()
+                .ForMember(c => c.ImageUrls, cfg => cfg.MapFrom(c => c.Images.Select(i => i.Url).ToList()))
+                .ForMember(c => c.SizesIds, cfg => cfg.MapFrom(c => c.Sizes.Select(s => s.SizeId).ToList()));
+
 
             //Reviews
             CreateMap<Review, ReviewServiceModel>()

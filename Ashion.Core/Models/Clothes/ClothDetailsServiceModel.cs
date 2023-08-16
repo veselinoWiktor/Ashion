@@ -6,25 +6,22 @@ namespace Ashion.Core.Models.Clothes
 {
     public class ClothDetailsServiceModel : ShopProductServiceModel
     {
-        [Required]
-        public string FashionType { get; set; } = null!;
-
         public string? ShortContent { get; set; }
 
-        [Required]
         public bool InStock { get; set; }
 
-        [Required]
-        public IEnumerable<string> ImageUrls { get; set; } = null!;
+        public string FashionType { get; set; } = null!;
 
-        [Required]
-        public ClothColorServiceModel MainColor { get; set; } = null!;
+        public string MainColor { get; set; } = null!;
 
-        [Required]
-        public IEnumerable<ClothColorDetailsServiceModel> OtherColors { get; set; } = null!;
+        public IEnumerable<string> ImageUrls { get; set; }
+            = new List<string>();
 
-        [Required]
-        public IEnumerable<ClothSizeServiceModel> Sizes { get; set; } = null!;
+        public IEnumerable<string> Sizes { get; set; }
+            = new List<string>();
+
+        public IEnumerable<ClothColorDetailsServiceModel> OtherColors { get; set; }
+            = new List<ClothColorDetailsServiceModel>();
 
         public IEnumerable<ReviewServiceModel> Reviews { get; set; }
             = new List<ReviewServiceModel>();
