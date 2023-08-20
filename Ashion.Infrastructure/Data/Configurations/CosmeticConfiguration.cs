@@ -22,7 +22,7 @@ namespace Ashion.Infrastructure.Data.Configurations
 
             builder
                 .HasMany(p => p.Images)
-                .WithOne()
+                .WithOne(i => i.Cosmetic)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder

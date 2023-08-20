@@ -4,6 +4,7 @@ using Ashion.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ashion.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AshionDbContext))]
-    partial class AshionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230820042536_RevertinMigrationFix")]
+    partial class RevertinMigrationFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -372,7 +374,7 @@ namespace Ashion.Infrastructure.Data.Migrations
                             Gender = 1,
                             IsActive = true,
                             Name = "Regular fit Тениска",
-                            PackageId = "705B0C81-D166-4127-8C1A-D956CA797BDB",
+                            PackageId = "EE2D09B8-6FC5-4BBD-857D-669448F72A8E",
                             Price = 157.90m,
                             Quantity = 10
                         });
@@ -1203,7 +1205,7 @@ namespace Ashion.Infrastructure.Data.Migrations
                         {
                             Id = "bcb4f072-ecca-43c9-ab26-c060c6f364e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "af4c0295-1871-4f99-bdd4-6e56cb3ffdfc",
+                            ConcurrencyStamp = "a380c056-0093-4f90-8f74-a66783cb6f06",
                             Email = "admin@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Great",
@@ -1211,9 +1213,9 @@ namespace Ashion.Infrastructure.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@mail.com",
                             NormalizedUserName = "admin@mail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAELjSovncUTeCrJuBRS0nfvYKcPoMycCXti8Oln9bpqMsxDvcQQzNGpGMGASjT7a5Bw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMZwocAApx6oR4P7mLsOPZA+85Q5njm3SjhaEs2xEwBREjSKpsQufRUBwE8csc9F7g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "972993bf-376f-4fe0-a9d8-c246b91a5048",
+                            SecurityStamp = "8ef0eca1-8280-4bc6-8ed2-969c93a2fba3",
                             TwoFactorEnabled = false,
                             UserName = "admin@mail.com"
                         });

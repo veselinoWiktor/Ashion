@@ -103,7 +103,7 @@
                                 <div class="color__checkbox">
                                     <label for="@Model.MainColor">
                                         <input type="radio" name="color__radio" id="@Model.MainColor" checked>
-                                        <span class="checkmark @Model.MainColor"></span>
+                                        <span class="checkmark @Model.MainColor.ToLower()"></span>
                                     </label>
                                     @if (Model.OtherColors.Count() > 0)
                                     {

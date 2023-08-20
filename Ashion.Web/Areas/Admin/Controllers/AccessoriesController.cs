@@ -47,7 +47,7 @@ namespace Ashion.Web.Areas.Admin.Controllers
             var newAccessoryId = await this.accessories.Create(model.Name, model.Brand, model.Price,
                 model.ShortContent, model.Description, model.Quantity, model.CategoryId, model.ImageUrls);
 
-            return RedirectToAction("Details", "Accessory", new { id = newAccessoryId, information = model.GetInformation(), area = "" });
+            return RedirectToAction("Details", "Accessories", new { id = newAccessoryId, information = model.GetInformation(), area = "" });
         }
 
         [HttpGet]

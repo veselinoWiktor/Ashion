@@ -23,7 +23,7 @@ namespace Ashion.Infrastructure.Data.Configurations
 
             builder
                 .HasMany(p => p.Images)
-                .WithOne()
+                .WithOne(i => i.Cloth)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
@@ -123,6 +123,62 @@ namespace Ashion.Infrastructure.Data.Configurations
                     Quantity = 7,
                     CategoryId = 1,
                     ColorId = 5,
+                    ForKids = false,
+                    Gender = Gender.Male
+                },
+                new Cloth()
+                {
+                    Id = 7,
+                    PackageId = "EE2D09B8-6FC5-4BBD-857D-669448F72A8E",
+                    Name = "Тениска 'DESTINY'",
+                    Brand = "JACK & JONES",
+                    Price = 34.90m,
+                    Description = "This T-Shirt is the best that Jack&Jones have ever created. Perfect for outdoor activities",
+                    Quantity = 5,
+                    CategoryId = 1,
+                    ColorId = 11,
+                    ForKids = false,
+                    Gender = Gender.Male
+                },
+                new Cloth()
+                {
+                    Id = 8,
+                    PackageId = "EE2D09B8-6FC5-4BBD-857D-669448F72A8E",
+                    Name = "Тениска 'DESTINY'",
+                    Brand = "JACK & JONES",
+                    Price = 34.90m,
+                    Description = "This T-Shirt is the best that Jack&Jones have ever created. Perfect for outdoor activities",
+                    Quantity = 7,
+                    CategoryId = 1,
+                    ColorId = 1,
+                    ForKids = false,
+                    Gender = Gender.Male
+                },
+                new Cloth()
+                {
+                    Id = 9,
+                    PackageId = "EE2D09B8-6FC5-4BBD-857D-669448F72A8E",
+                    Name = "Тениска 'DESTINY'",
+                    Brand = "JACK & JONES",
+                    Price = 34.90m,
+                    Description = "This T-Shirt is the best that Jack&Jones have ever created. Perfect for outdoor activities",
+                    Quantity = 4,
+                    CategoryId = 1,
+                    ColorId = 9,
+                    ForKids = false,
+                    Gender = Gender.Male
+                },
+                new Cloth()
+                {
+                    Id = 10,
+                    PackageId = "705B0C81-D166-4127-8C1A-D956CA797BDB",
+                    Name = "Regular fit Тениска",
+                    Brand = "TOMMY HILFIGER",
+                    Price = 157.90m,
+                    Description = "This T-Shirt is the best that Tommy Hilfiger have ever created. Perfect for dates",
+                    Quantity = 10,
+                    CategoryId = 1,
+                    ColorId = 2,
                     ForKids = false,
                     Gender = Gender.Male
                 }
