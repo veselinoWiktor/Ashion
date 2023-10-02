@@ -41,6 +41,8 @@ namespace Ashion.Infrastructure.Data
 
         public DbSet<Size> Sizes { get; set; } = null!;
 
+        public DbSet<UserCart> UsersCarts { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             if (seedDb)
@@ -52,6 +54,7 @@ namespace Ashion.Infrastructure.Data
                 builder.ApplyConfiguration(new ImageConfiguration());
             }
 
+            builder.ApplyConfiguration(new UserCartConfiguration());
             builder.ApplyConfiguration(new AccessoryConfiguration(seedDb));
             builder.ApplyConfiguration(new ClothConfiguration(seedDb));
             builder.ApplyConfiguration(new ClothSizeConfiguration(seedDb));
@@ -60,6 +63,5 @@ namespace Ashion.Infrastructure.Data
 
             base.OnModelCreating(builder);
         }
-
     }
 }
