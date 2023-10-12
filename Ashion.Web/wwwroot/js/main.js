@@ -62,8 +62,8 @@ Created: Colorib
     });
 
     /*------------------
-		Navigation
-	--------------------*/
+        Navigation
+    --------------------*/
     $(".header__menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
@@ -102,22 +102,22 @@ Created: Colorib
         items: 1,
         dots: false,
         nav: true,
-        navText: ["<i class='arrow_carrot-left'></i>","<i class='arrow_carrot-right'></i>"],
+        navText: ["<i class='arrow_carrot-left'></i>", "<i class='arrow_carrot-right'></i>"],
         smartSpeed: 1200,
         autoHeight: false,
         autoplay: false,
         mouseDrag: false,
         startPosition: 'URLHash'
-    }).on('changed.owl.carousel', function(event) {
+    }).on('changed.owl.carousel', function (event) {
         var indexNum = event.item.index + 1;
         product_thumbs(indexNum);
     });
 
-    function product_thumbs (num) {
+    function product_thumbs(num) {
         var thumbs = document.querySelectorAll('.product__thumb a');
         thumbs.forEach(function (e) {
             e.classList.remove("active");
-            if(e.hash.split("-")[1] == num) {
+            if (e.hash.split("-")[1] == num) {
                 e.classList.add("active");
             }
         })
@@ -125,7 +125,7 @@ Created: Colorib
 
 
     /*------------------
-		Magnific
+        Magnific
     --------------------*/
     $('.image-popup').magnificPopup({
         type: 'image'
@@ -133,12 +133,12 @@ Created: Colorib
 
 
     $(".nice-scroll").niceScroll({
-        cursorborder:"",
-        cursorcolor:"#dddddd",
-        boxzoom:false,
+        cursorborder: "",
+        cursorcolor: "#dddddd",
+        boxzoom: false,
         cursorwidth: 5,
         background: 'rgba(0, 0, 0, 0.2)',
-        cursorborderradius:50,
+        cursorborderradius: 50,
         horizrailenabled: false
     });
 
@@ -151,7 +151,7 @@ Created: Colorib
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    if(mm == 12) {
+    if (mm == 12) {
         mm = '01';
         yyyy = yyyy + 1;
     } else {
@@ -166,28 +166,28 @@ Created: Colorib
 
     /* var timerdate = "2020/12/30" */
 
-	$("#countdown-time").countdown(timerdate, function(event) {
+    $("#countdown-time").countdown(timerdate, function (event) {
         $(this).html(event.strftime("<div class='countdown__item'><span>%D</span> <p>Day</p> </div>" + "<div class='countdown__item'><span>%H</span> <p>Hour</p> </div>" + "<div class='countdown__item'><span>%M</span> <p>Min</p> </div>" + "<div class='countdown__item'><span>%S</span> <p>Sec</p> </div>"));
     });
 
     /*-------------------
-		Range Slider
-	--------------------- */
-	var rangeSlider = $(".price-range"),
-    //minamount = $("#minamount"),
-    //maxamount = $("#maxamount"),
-    amount = $('#amount'),
-    minPrice = rangeSlider.data('min'),
-    maxPrice = rangeSlider.data('max');
+        Range Slider
+    --------------------- */
+    var rangeSlider = $(".price-range"),
+        //minamount = $("#minamount"),
+        //maxamount = $("#maxamount"),
+        amount = $('#amount'),
+        minPrice = rangeSlider.data('min'),
+        maxPrice = rangeSlider.data('max');
     rangeSlider.slider({
-    range: true,
-    min: minPrice,
-    max: maxPrice,
-    values: [minPrice, maxPrice],
-    slide: function (event, ui) {
-        amount.val('$' + ui.values[0] + ' - $' + ui.values[1])
-        //minamount.val('$' + ui.values[0]);
-        //maxamount.val('$' + ui.values[1]);
+        range: true,
+        min: minPrice,
+        max: maxPrice,
+        values: [minPrice, maxPrice],
+        slide: function (event, ui) {
+            amount.val('$' + ui.values[0] + ' - $' + ui.values[1])
+            //minamount.val('$' + ui.values[0]);
+            //maxamount.val('$' + ui.values[1]);
         }
     });
     amount.val("$" + rangeSlider.slider("values", 0) +
@@ -196,41 +196,41 @@ Created: Colorib
     //maxamount.val('$' + rangeSlider.slider("values", 1));
 
     /*------------------
-		Single Product
-	--------------------*/
-	$('.product__thumb .pt').on('click', function(){
-		var imgurl = $(this).data('imgbigurl');
-		var bigImg = $('.product__big__img').attr('src');
-		if(imgurl != bigImg) {
-			$('.product__big__img').attr({src: imgurl});
-		}
+        Single Product
+    --------------------*/
+    $('.product__thumb .pt').on('click', function () {
+        var imgurl = $(this).data('imgbigurl');
+        var bigImg = $('.product__big__img').attr('src');
+        if (imgurl != bigImg) {
+            $('.product__big__img').attr({ src: imgurl });
+        }
     });
-    
+
     /*-------------------
-		Quantity change
-	--------------------- */
+        Quantity change
+    --------------------- */
     var proQty = $('.pro-qty');
-	proQty.prepend('<span class="dec qtybtn">-</span>');
-	proQty.append('<span class="inc qtybtn">+</span>');
-	proQty.on('click', '.qtybtn', function () {
-		var $button = $(this);
-		var oldValue = $button.parent().find('input').val();
-		if ($button.hasClass('inc')) {
-			var newVal = parseFloat(oldValue) + 1;
-		} else {
-			// Don't allow decrementing below zero
-			if (oldValue > 0) {
-				var newVal = parseFloat(oldValue) - 1;
-			} else {
-				newVal = 0;
-			}
-		}
-		$button.parent().find('input').val(newVal);
+    proQty.prepend('<span class="dec qtybtn">-</span>');
+    proQty.append('<span class="inc qtybtn">+</span>');
+    proQty.on('click', '.qtybtn', function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find('input').val();
+        if ($button.hasClass('inc')) {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 0;
+            }
+        }
+        $button.parent().find('input').val(newVal);
     });
-    
+
     /*-------------------
-		Radio Btn
-	--------------------- */
+        Radio Btn
+    --------------------- */
     $(".size__btn label").on('click', function () {
         $(".size__btn label").removeClass('active');
         $(this).addClass('active');
@@ -270,51 +270,113 @@ Created: Colorib
         $('#sidebar_form').submit();
     })
 
-    /*<div class="form-inline">
-        < input class="form-control col-md-10" value = "" type = "text" data - val="true" data - val - required="The Images field is required." id = "ImageUrls" name = "ImageUrls" >
-        <button id="add-more" class="btn btn-success col-md-2">Add</button>
-        <br>
-        <br>
-    </div>"*/
+    function Util() { };
 
-    var nextElement = $('#image-urls div:last-of-type');
-    var next = parseInt($(nextElement).attr('id').charAt($(nextElement).attr('id').length - 1));
-    $("#add-more").click(function (e) {
-        e.preventDefault();
-        var addto = "#field" + next;
-        var addRemove = "#field" + (next);
-        next = next + 1;
-        var newIn = '<div class="form-inline col-md-9 px-0" id="field' + next + '" name="field' + next + '"><input class="form-control col-md-12" value="" type="text" data-val="true" data-val-required="The Images field is required." id="ImageUrls" name="ImageUrls"><br /><br /></div>';
-        var newInput = $(newIn);
-        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger col-md-3 remove-me" >Remove</button>';
-        var removeButton = $(removeBtn);
-        $(addto).after(newInput);
-        $(addRemove).after(removeButton);
-        $("#field" + next).attr('data-source', $(addto).attr('data-source'));
-        $("#count").val(next);
+    Util.hasClass = function (el, className) {
+        if ($(el).attr('class')) return el.hasClass(className);
+        else return !!$(el).attr('class').match(/(\\s|^)/ + className + /(\\s|$)'/);
+    };
 
-        $('.remove-me').click(function (e) {
-            e.preventDefault();
-            var fieldNum = this.id.charAt(this.id.length - 1);
-            var fieldID = "#field" + fieldNum;
-            $(this).remove();
-            $(fieldID).remove();
+    Util.addClass = function (el, className) {
+        var classList = className.split(' ');
+        if ($(el).attr('class')) $(el).addClass(classList[0]);
+        else if (!Util.hasClass(el, classList[0])) $(el).addClass(classList[0]);
+        if (classList.length > 1) Util.addClass(el, classList.slice(1).join(' '));
+    };
+
+    Util.removeClass = function (el, className) {
+        var classList = className.split(' ');
+        if ($(el).attr('class')) $(el).removeClass(classList[0]);
+        else if (Util.hasClass(el, classList[0])) {
+            var reg = new RegExp('(\\s|^)' + classList[0] + '(\\s|$)');
+            var elementClasses = $(el).attr('class');
+            elementClasses.replace(reg, ' ');
+            $(el).attr('class', elementClasses)
+        }
+        if (classList.length > 1) Util.removeClass(el, classList.slice(1).join(' '));
+    };
+
+    var cart = $('.shopping-cart');
+    if (cart.length > 0) {
+        var isAnimating = false;
+        let cartCount = $('.cart-count');
+        let cartCountItems = $(cartCount).find('div');
+
+        $('.add-product').click(function () {
+            let imgtodrag = $(this).parent().parent().parent().parent();
+
+            if (imgtodrag) {
+                if (isAnimating) {
+                    return;
+                }
+                isAnimating = true;
+
+                var imgclone = imgtodrag.clone()
+                    .offset({
+                        top: (imgtodrag.offset().top + (imgtodrag.height() / 5)),
+                        left: (imgtodrag.offset().left + (imgtodrag.width() / 5))
+                    })
+                    .css({
+                        'opacity': '0.5',
+                        'position': 'absolute',
+                        'height': '150px',
+                        'width': '150px',
+                        'z-index': '100'
+                    })
+                    .appendTo($('body'))
+                    .animate({
+                        'top': cart.offset().top + 5,
+                        'left': cart.offset().left + 5,
+                        'width': 50,
+                        'height': 50
+                    }, 1000, 'easeInOutExpo');
+
+                imgclone.animate({
+                    'width': 0,
+                    'height': 0
+                }, function () {
+                    $(this).detach()
+                });
+
+                setTimeout(function () {
+                    updateCartCount();
+                    isAnimating = false;
+                }, 1100);
+            }
+
+            var this_element = $(this) // HERE
+            var id = $(this_element).attr('data-itemId'); // HERE
+            var parent = $(this_element).parent().parent().parent().parent().parent();
+            $(parent).off('mouseenter mouseleave');
+            $.ajax({
+                url: 'https://localhost:7082/Cart/AddToCart/',
+                type: 'POST',
+                headers: {
+                    "X-ANTI-FORGERY-TOKEN": $('input[name = __RequestVerificationToken]').val(),
+                }
+            });
+
         });
-    });
 
-    $('.remove-me').click(function (e) {
-        e.preventDefault();
-        var fieldNum = this.id.charAt(this.id.length - 1);
-        var fieldID = "#field" + fieldNum;
-        $(this).remove();
-        $(fieldID).remove();
-    });
+        function updateCartCount() {
+            var actual = Number(cartCountItems[0].innerText) + 1;
+            var next = actual + 1;
 
-    $(function () {
-        $('[data-toggle="popover"]').popover({
-            container: 'body',
-            trigger: 'focus'
-        })
-    })
+            Util.addClass(cartCount, 'cart-count-update');
 
+            setTimeout(function () {
+                cartCountItems[0].innerText = actual;
+            }, 150);
+
+            setTimeout(function () {
+                Util.removeClass(cartCount, 'cart-count-update');
+            }, 200);
+
+            setTimeout(function () {
+                cartCountItems[1].innerText = next;
+            }, 230);
+
+            isAnimating = false;
+        };
+    };
 })(jQuery);

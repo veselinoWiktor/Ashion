@@ -1262,10 +1262,6 @@ ol {
 	transition: all, 0.5s;
 }
 
-.product__hover li a.liked {
-	background: #ca1515;
-	color: #ffffff;
-}
 
 .product__hover li a span {
 	position: relative;
@@ -2121,6 +2117,26 @@ ol {
 /*---------------------
   Shop Cart
 -----------------------*/
+
+.cart-count div {
+	transform: translateZ(0);
+	left: 50%;
+	top: 50%;
+	animation-fill-mode: forwards;
+	animation-duration: .15s;
+}
+
+.cart-count div:last-of-type {
+	visibility: hidden;
+}
+
+.cart-count-update div:last-of-type {
+	animation-name: qty-enter;
+}
+
+.cart-count-update div:first-of-type {
+	animation-name: qty-leave;
+}
 
 .shop-cart {
 	padding-top: 70px;
@@ -3195,6 +3211,34 @@ ol {
 
 .contact__map iframe {
 	width: 100%;
+}
+
+/*--------------------------------- Custom Keyframes ------------------------------*/
+
+@keyframes qty-enter {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(0%) translateY(50%);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0%) translateY(0%);
+  }
+}
+
+@keyframes qty-leave {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0%) translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(0%) translateY(-50%);
+  }
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/

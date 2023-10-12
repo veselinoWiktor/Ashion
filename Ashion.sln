@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ashion.Core", "Ashion.Core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ashion.Infrastructure", "Ashion.Infrastructure\Ashion.Infrastructure.csproj", "{8B79E2CB-9CE8-4A33-9A23-6C0CF0971F4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ashion.Tests", "Ashion.Tests\Ashion.Tests.csproj", "{4AB3197D-23A3-4B90-8A76-8932353CB1B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ashion.Tests", "Ashion.Tests\Ashion.Tests.csproj", "{4AB3197D-23A3-4B90-8A76-8932353CB1B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

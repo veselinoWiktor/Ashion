@@ -19,6 +19,11 @@
                             asp-route-Id="@Model.Id"><span class="icon_minus-06"></span></a>
                         </li>
                     }
+                    else
+                    {
+                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                        <li><a class="add-product" data-itemId="@Model.Id"><span class="icon_bag_alt"></span></a></li>
+                    }
                 </ul>
             </form>
         </div>

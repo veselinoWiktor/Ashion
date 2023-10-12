@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IAccessoriesService, AccessoriesService>();
             services.AddScoped<ICosmeticsService, CosmeticsService>();
             services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<ICartService, CartService>();
             services.AddScoped<IRepository, Repository>();
 
             return services;
